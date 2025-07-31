@@ -1,12 +1,12 @@
-import { ImageBackground, Pressable, ImageBackgroundProps } from 'react-native';
 import { Link } from 'expo-router';
+import { ImageBackground, ImageBackgroundProps, Pressable } from 'react-native';
 
 import { CityPreview } from '@/src/domain/city/City';
-import { useCityToggleFavorite } from '@/src/domain/city/operations/useCityToggleFavorite';
-import { Box, TouchableOpacityBox } from './Box';
-import { Text } from './Text';
 import { useAppTheme } from '../theme/useAppTheme';
-import { Icon } from './Icon';
+import { BlackOpacity } from './BlackOpacity';
+import { Box } from './Box';
+import { CityFavoriteButton } from './CityFavoriteButton';
+import { Text } from './Text';
 
 type CityCardProps = {
   city: CityPreview;
@@ -15,7 +15,7 @@ type CityCardProps = {
 
 export const CityCard = ({ city, style }: CityCardProps) => {
   const { borderRadii } = useAppTheme();
-  const { mutate: toggleFavorite } = useCityToggleFavorite();
+
   return (
     <Link push href={`/city-details/${city.id}`} asChild>
       <Pressable>
@@ -34,24 +34,13 @@ export const CityCard = ({ city, style }: CityCardProps) => {
           ]}
           imageStyle={{
             borderRadius: borderRadii.default,
-            opacity: 0.75,
           }}
         >
+          <BlackOpacity />
           <Box justifyContent='space-between' flex={1} padding='s24'>
-            <TouchableOpacityBox
-              alignSelf='flex-end'
-              onPress={() => {
-                toggleFavorite({
-                  cityId: city.id,
-                  isFavorite: city.isFavorite,
-                });
-              }}
-            >
-              <Icon
-                name={city.isFavorite ? 'Favorite-fill' : 'Favorite-outline'}
-                color={city.isFavorite ? 'primary' : 'text'}
-              />
-            </TouchableOpacityBox>
+            <Box alignSelf='flex-end'>
+              <CityFavoriteButton city={city} />
+            </Box>
 
             <Box>
               <Text variant='title22'>{city.name}</Text>

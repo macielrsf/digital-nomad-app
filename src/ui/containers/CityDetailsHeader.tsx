@@ -1,13 +1,14 @@
+import { router } from 'expo-router';
 import { ImageBackground, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { City } from '@/src/domain/city/City';
+import { BadgeHeight } from '../components/Badge';
+import { BlackOpacity } from '../components/BlackOpacity';
 import { Box } from '../components/Box';
 import { CategoryBadge } from '../components/CategoryBadge';
-import { Icon } from '../components/Icon';
+import { CityFavoriteButton } from '../components/CityFavoriteButton';
 import { IconButton } from '../components/IconButton';
-import { BadgeHeight } from '../components/Badge';
-import { router } from 'expo-router';
 
 type CityDetailsHeaderProps = Pick<
   City,
@@ -28,23 +29,25 @@ export function CityDetailsHeader({ city }: { city: CityDetailsHeaderProps }) {
             : { uri: city.coverImage }
         }
       >
+        <BlackOpacity />
         <Box
           flexDirection='row'
           justifyContent='space-between'
+          alignItems='center'
           padding='padding'
           style={{ paddingTop: insets.top }}
         >
           <IconButton iconName='Chevron-left' onPress={router.back} />
-          <Icon
-            name={city.isFavorite ? 'Favorite-fill' : 'Favorite-outline'}
+          <CityFavoriteButton
             size={30}
-            color={city.isFavorite ? 'primary' : 'pureWhite'}
+            city={{ id: city.id, isFavorite: city.isFavorite }}
           />
         </Box>
       </ImageBackground>
       <ScrollView
         horizontal
         bounces={false}
+        showsHorizontalScrollIndicator={false}
         style={{ marginTop: -BadgeHeight / 2 }}
       >
         <Box flexDirection='row' gap='s8' paddingHorizontal='padding'>
