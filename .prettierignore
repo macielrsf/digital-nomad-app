@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+yarn.lock
+package-lock.json
+
+# Build outputs
+.expo/
+dist/
+build/
+
+# Generated files
+*.generated.*
+*.d.ts
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Environment files
+.env*
+
+# Metro
+.metro-health-check*
