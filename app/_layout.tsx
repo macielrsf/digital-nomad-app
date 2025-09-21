@@ -11,6 +11,7 @@ export const unstable_settings = {
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
+    IcoMoon: require('@/assets/icons/icomoon.ttf'),
     PoppinsBlack: require('@/assets/fonts/Poppins-Black.ttf'),
     PoppinsBold: require('@/assets/fonts/Poppins-Bold.ttf'),
     PoppinsExtraBold: require('@/assets/fonts/Poppins-ExtraBold.ttf'),

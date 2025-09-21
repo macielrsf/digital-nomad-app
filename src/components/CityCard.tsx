@@ -15,7 +15,7 @@ export const CityCard = ({ city }: { city: CityPreview }) => {
         flex: 1,
       }}
     >
-      <Box justifyContent='flex-end' alignItems='flex-end' flex={1}>
+      <Box justifyContent='flex-end' alignItems='flex-start' flex={1}>
         <Text variant='title22'>{city.name}</Text>
         <Text variant='text16'>{city.country}</Text>
       </Box>
