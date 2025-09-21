@@ -1,9 +1,9 @@
-import { Box } from '@/src/components/Box';
 import { FlatList } from 'react-native';
 
 import { cities } from '@/src/data/cities';
 import { CityPreview } from '../../../src/types';
 import { CityCard } from '@/src/components/CityCard';
+import { Screen } from '@/src/components/Screen';
 
 export default function HomeScreen() {
   const renderItem = ({ item }: { item: CityPreview }) => (
@@ -11,8 +11,8 @@ export default function HomeScreen() {
   );
 
   return (
-    <Box flex={1} backgroundColor='mainBackground'>
+    <Screen>
       <FlatList data={cities} renderItem={renderItem} />
-    </Box>
+    </Screen>
   );
 }
