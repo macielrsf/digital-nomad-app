@@ -7,11 +7,17 @@ export const CityCard = ({ city }: { city: CityPreview }) => {
   return (
     <ImageBackground
       source={city.coverImage}
-      style={{ minHeight: 200, marginVertical: 10, borderRadius: 20, flex: 1 }}
+      style={{
+        minHeight: 200,
+        marginVertical: 10,
+        padding: 20,
+        borderRadius: 20,
+        flex: 1,
+      }}
     >
-      <Box>
-        <Text>{city.name}</Text>
-        <Text>{city.country}</Text>
+      <Box justifyContent='flex-end' alignItems='flex-end' flex={1}>
+        <Text variant='title22'>{city.name}</Text>
+        <Text variant='text16'>{city.country}</Text>
       </Box>
     </ImageBackground>
   );

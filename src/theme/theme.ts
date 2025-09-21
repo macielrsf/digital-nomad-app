@@ -32,20 +32,37 @@ const theme = createTheme({
     s56: 56,
   },
   textVariants: {
-    header: {
-      fontWeight: 'bold',
-      fontSize: 34,
-    },
-    body: {
-      fontSize: 16,
-      lineHeight: 24,
-    },
     defaults: {
       color: 'text',
+      fontFamily: 'PoppinsRegular',
     },
-    borderRadius: {
-      default: 16,
+    title28: {
+      fontSize: 28,
+      fontFamily: 'PoppinsSemiBold',
     },
+    title22: {
+      fontSize: 22,
+      fontFamily: 'PoppinsSemiBold',
+    },
+    title16: {
+      fontSize: 16,
+      fontFamily: 'PoppinsSemiBold',
+    },
+    text18: {
+      fontSize: 18,
+    },
+    text16: {
+      fontSize: 16,
+    },
+    text14: {
+      fontSize: 14,
+    },
+    text12: {
+      fontSize: 12,
+    },
+  },
+  borderRadius: {
+    default: 16,
   },
 });
 
