@@ -8,8 +8,10 @@ export default function ProtectedLayout() {
   }
 
   return (
-    <Stack screenOptions={{ fullScreenGestureEnabled: true }}>
-      <Stack.Screen name='(tab)' />
+    <Stack
+      screenOptions={{ headerShown: false, fullScreenGestureEnabled: true }}
+    >
+      <Stack.Screen name='(tabs)' />
     </Stack>
   );
 }

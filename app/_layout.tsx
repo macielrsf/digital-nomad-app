@@ -38,11 +38,11 @@ export default function RootLayout() {
   return (
     <ThemeProvider theme={theme}>
       <Stack>
-        <StatusBar style='auto' />
         <Stack.Screen name='(protected)' options={{ headerShown: false }} />
         <Stack.Screen name='+not-found' options={{ headerShown: false }} />
         <Stack.Screen name='sign-in' options={{ headerShown: false }} />
       </Stack>
+      <StatusBar style='auto' />
     </ThemeProvider>
   );
 }
