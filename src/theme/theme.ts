@@ -15,6 +15,7 @@ const theme = createTheme({
     text: palette.pureWhite,
     gray1: palette.charcoalGrey,
     gray2: palette.stoneGrey,
+    ...palette,
   },
   spacing: {
     s2: 2,

@@ -17,6 +17,7 @@ export const CityCard = ({ city }: { city: CityPreview }) => {
       }}
       imageStyle={{
         borderRadius: borderRadii.default,
+        opacity: 0.75,
       }}
     >
       <Box justifyContent='space-between' flex={1} padding='s24'>
