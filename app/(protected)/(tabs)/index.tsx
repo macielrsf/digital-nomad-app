@@ -5,9 +5,10 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { cities } from '@/src/data/cities';
 import { CityPreview } from '../../../src/types';
-import { CityCard } from '@/src/components/CityCard';
-import { Screen } from '@/src/components/Screen';
+import { CityCard } from '@/src/components/cards/CityCard';
+import { Screen } from '@/src/components/layout/Screen';
 import { useAppTheme } from '@/src/theme/useAppTheme';
+import { CityFilter } from '@/src/containers/CityFilter';
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
@@ -32,6 +33,7 @@ export default function HomeScreen() {
           paddingTop: insets.top,
           paddingBottom: insets.bottom,
         }}
+        ListHeaderComponent={<CityFilter />}
       />
     </Screen>
   );

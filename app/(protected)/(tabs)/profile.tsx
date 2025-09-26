@@ -1,5 +1,5 @@
-import { Screen } from '@/src/components/Screen';
-import { Text } from '@/src/components/Text';
+import { Screen } from '@/src/components/layout/Screen';
+import { Text } from '@/src/components/ui/Text';
 
 export default function ProfileScreen() {
   return (

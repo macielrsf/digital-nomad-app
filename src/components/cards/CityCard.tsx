@@ -1,10 +1,10 @@
 import { ImageBackground } from 'react-native';
 
-import { CityPreview } from '../types';
-import { Box } from './Box';
-import { Text } from './Text';
+import { CityPreview } from '../../types';
+import { Box } from '../ui/Box';
+import { Text } from '../ui/Text';
 import { useAppTheme } from '@/src/theme/useAppTheme';
-import { Icon } from './Icon';
+import { Icon } from '../ui/Icon';
 
 export const CityCard = ({ city }: { city: CityPreview }) => {
   const { borderRadii } = useAppTheme();

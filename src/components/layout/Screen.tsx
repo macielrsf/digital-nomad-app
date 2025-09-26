@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { Box, BoxProps } from './Box';
+import { Box, BoxProps } from '../ui/Box';
 
 export function Screen({
   children,

@@ -1,7 +1,7 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { useAppTheme } from '@/src/theme/useAppTheme';
-import { Icon } from '@/src/components/Icon';
+import { Icon } from '@/src/components/ui/Icon';
 
 export default function TabLayout() {
   const { colors } = useAppTheme();
