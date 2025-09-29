@@ -9,19 +9,23 @@ import { CityCard } from '@/src/components/cards/CityCard';
 import { Screen } from '@/src/components/layout/Screen';
 import { useAppTheme } from '@/src/theme/useAppTheme';
 import { CityFilter } from '@/src/containers/CityFilter';
+import { categories } from '@/src/data/categories';
+import { Box } from '@/src/components/ui/Box';
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
   const flatListRef = useRef<FlatList>(null);
   useScrollToTop(flatListRef);
-
   const { spacing } = useAppTheme();
+
   const renderItem = ({ item }: { item: CityPreview }) => (
-    <CityCard city={item} />
+    <Box paddingHorizontal='padding'>
+      <CityCard city={item} />
+    </Box>
   );
 
   return (
-    <Screen>
+    <Screen style={{ paddingHorizontal: 0 }}>
       <FlatList
         ref={flatListRef}
         data={cities}
@@ -33,7 +37,7 @@ export default function HomeScreen() {
           paddingTop: insets.top,
           paddingBottom: insets.bottom,
         }}
-        ListHeaderComponent={<CityFilter />}
+        ListHeaderComponent={<CityFilter categories={categories} />}
       />
     </Screen>
   );
