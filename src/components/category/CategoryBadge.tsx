@@ -4,7 +4,7 @@ import { IconName } from '../ui/Icon';
 
 type CategoryBadgeProps = {
   category: Category;
-} & Pick<BadgeProps, 'active'>;
+} & Pick<BadgeProps, 'active' | 'onPress'>;
 
 export function CategoryBadge({ category, ...badgeProps }: CategoryBadgeProps) {
   return (
