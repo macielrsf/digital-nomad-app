@@ -17,7 +17,10 @@ export default function HomeScreen() {
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
     null
   );
-  const cities = useCities(search, selectedCategoryId);
+  const { cityPreviewList } = useCities({
+    search,
+    categoryId: selectedCategoryId,
+  });
 
   const insets = useSafeAreaInsets();
   const flatListRef = useRef<FlatList>(null);
@@ -34,7 +37,7 @@ export default function HomeScreen() {
     <Screen style={{ paddingHorizontal: 0 }}>
       <FlatList
         ref={flatListRef}
-        data={cities}
+        data={cityPreviewList}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         showsVerticalScrollIndicator={false}
