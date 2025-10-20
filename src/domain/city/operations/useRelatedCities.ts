@@ -3,5 +3,8 @@ import { useAppQuery } from '@/src/infra/operations/useAppQuery';
 
 export function useRelatedCities(id: string) {
   const { city } = useRepository();
-  return useAppQuery(() => city.getRelatedCities(id), [id]);
+  return useAppQuery({
+    queryKey: ['related-cities', id],
+    fetchData: () => city.getRelatedCities(id),
+  });
 }

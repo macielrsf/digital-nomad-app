@@ -1,9 +1,9 @@
 import { City, CityPreview } from '@/src/domain/city/City';
 import {
+  CitiesGroupedByCategory,
   CityFindAllFilters,
   CityToggleFavoriteParams,
   ICityRepo,
-  CitiesGroupedByCategory,
 } from '@/src/domain/city/ICityRepo';
 import { cities } from '@/src/infra/repositories/adapters/inMemory/data/cities';
 

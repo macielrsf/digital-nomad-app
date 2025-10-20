@@ -9,12 +9,11 @@ import { Box } from '@/src/ui/components/Box';
 import { CityCard } from '@/src/ui/components/CityCard';
 import { Screen } from '@/src/ui/components/Screen';
 import { CityFilter } from '@/src/ui/containers/CityFilter';
-
+import { Text } from '@/src/ui/components/Text';
 import { useCityFindAll } from '@/src/domain/city/operations/useCityFindAll';
 import { useAppTheme } from '@/src/ui/theme/useAppTheme';
+import { errorUtils } from '@/src/utils/errorUtils';
 import { useDebounce } from '@/src/utils/hooks/useDebounce';
-
-import { Text } from '@/src/ui/components/Text';
 
 export default function HomeScreen() {
   const [name, setName] = useState('');
@@ -52,7 +51,11 @@ export default function HomeScreen() {
     if (isLoading) {
       Content = <Text>carregando cidades...</Text>;
     } else if (error) {
-      Content = <Text>erro ao carregar cidades. {error.message}</Text>;
+      Content = (
+        <Text>
+          erro ao carregar cidades. {errorUtils.getErrorMessage(error)}
+        </Text>
+      );
     } else {
       Content = <Text>não há cidades no momento</Text>;
     }
