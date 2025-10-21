@@ -10,6 +10,15 @@ export type BadgeProps = {
   onPress?: PressableProps['onPress'];
 };
 
+/**
+ * The height of the Badge component in pixels is the sum of the icon size, padding, and border width.
+ * Icon size: 16px
+ * Vertical padding: 8px (top) + 8px (bottom) = 16px
+ * Border width: 2px (top) + 2px (bottom) = 4px
+ * Total height = 16px + 16px + 4px = 36px
+ */
+export const BadgeHeight = 36;
+
 export function Badge({
   label,
   iconName,

@@ -1,10 +1,12 @@
-import { ImageBackground } from 'react-native';
+import { ImageBackground, ScrollView } from 'react-native';
 import { Box } from '../components/ui/Box';
 import { City } from '../types';
 import { IconButton } from '../components/ui/IconButton';
 import { router } from 'expo-router';
 import { Icon } from '../components/ui/Icon';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { CategoryBadge } from '../components/category/CategoryBadge';
+import { BadgeHeight } from '../components/ui/Badge';
 
 type CityDetailsHeaderProps = Pick<City, 'id' | 'coverImage' | 'categories'>;
 
@@ -28,6 +30,17 @@ export function CityDetailsHeader({ city }: { city: CityDetailsHeaderProps }) {
           <Icon name='Favorite-outline' size={30} color='pureWhite' />
         </Box>
       </ImageBackground>
+      <ScrollView
+        horizontal
+        bounces={false}
+        style={{ marginTop: -BadgeHeight / 2 }}
+      >
+        <Box flexDirection='row' gap='s8' paddingHorizontal='padding'>
+          {city.categories.map(category => (
+            <CategoryBadge key={category.id} category={category} active />
+          ))}
+        </Box>
+      </ScrollView>
     </Box>
   );
 }
