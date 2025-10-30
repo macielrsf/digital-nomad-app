@@ -1,10 +1,20 @@
 import { PropsWithChildren } from 'react';
 import { Box, BoxProps } from '../ui/Box';
+import { ScrollView, View, ScrollViewProps } from 'react-native';
+
+type ScreenProps = {
+  scrollable?: boolean;
+  contentContainerStyle?: ScrollViewProps['contentContainerStyle'];
+  header?: React.ReactNode;
+};
 
 export function Screen({
   children,
+  scrollable = false,
+  contentContainerStyle,
+  header,
   ...boxProps
-}: PropsWithChildren & BoxProps) {
+}: PropsWithChildren & BoxProps & ScreenProps) {
   return (
     <Box
       flex={1}
@@ -12,7 +22,17 @@ export function Screen({
       paddingHorizontal='padding'
       {...boxProps}
     >
-      {children}
+      {header}
+      {scrollable ? (
+        <ScrollView
+          style={{ flex: 1 }}
+          contentContainerStyle={contentContainerStyle}
+        >
+          {children}
+        </ScrollView>
+      ) : (
+        <View>{children}</View>
+      )}
     </Box>
   );
 }

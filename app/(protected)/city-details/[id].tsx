@@ -1,4 +1,4 @@
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 
 import { useCityDetails } from '@/src/data/useCityDetails';
 
@@ -12,7 +12,6 @@ import { Text } from '@/src/components/ui/Text';
 
 export default function CityDetailsScreen() {
   const { id } = useLocalSearchParams();
-  const router = useRouter();
   const city = useCityDetails(id as string);
 
   if (!city) {
@@ -24,10 +23,20 @@ export default function CityDetailsScreen() {
   }
 
   return (
-    <Screen style={{ paddingHorizontal: 0 }}>
-      <CityDetailsHeader city={city} />
-      <CityDetailsInfo />
-      <CityDetailsTouristAttractions />
+    <Screen
+      style={{ flex: 1, paddingHorizontal: 0 }}
+      scrollable
+      contentContainerStyle={{ paddingBottom: 32 }}
+      header={<CityDetailsHeader city={city} />}
+    >
+      <CityDetailsInfo
+        name={city.name}
+        country={city.country}
+        description={city.description}
+      />
+      <CityDetailsTouristAttractions
+        touristAttractions={city.touristAttractions}
+      />
       <CityDetailsMap />
       <CityDetailsRelatedCities />
     </Screen>
