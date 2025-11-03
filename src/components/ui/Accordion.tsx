@@ -1,9 +1,15 @@
 import { Pressable, StyleSheet, View } from 'react-native';
-import { useState } from 'react';
 import { Text } from './Text';
 import { Icon } from './Icon';
 import { Box } from './Box';
 import theme from '@/src/theme/theme';
+import Animated, {
+  useSharedValue,
+  SharedValue,
+  useAnimatedStyle,
+  withTiming,
+} from 'react-native-reanimated';
+import { use } from 'react';
 
 type Props = {
   title: string;
@@ -11,13 +17,17 @@ type Props = {
 };
 
 export function Accordion({ title, description }: Props) {
-  const [isOpen, setIsOpen] = useState(false);
+  const isOpen = useSharedValue(false);
+
+  function handleToggle() {
+    isOpen.value = !isOpen.value;
+  }
 
   return (
-    <Pressable onPress={() => setIsOpen(!isOpen)}>
+    <Pressable onPress={handleToggle}>
       <View>
         <AccordionHeader title={title} isOpen={isOpen} />
-        {isOpen && <AccordionContent description={description} />}
+        <AccordionContent description={description} isOpen={isOpen} />
       </View>
     </Pressable>
   );
@@ -28,27 +38,46 @@ function AccordionHeader({
   isOpen,
 }: {
   title: string;
-  isOpen: boolean;
+  isOpen: SharedValue<boolean>;
 }) {
   return (
-    <View style={isOpen ? styles.headerOpened : styles.header}>
+    <View style={isOpen.value ? styles.headerOpened : styles.header}>
       <Box flexShrink={1}>
         <Text variant='title16'>{title}</Text>
       </Box>
       <Icon
-        name={isOpen ? 'Chevron-up' : 'Chevron-down'}
-        color={isOpen ? 'primary' : 'gray2'}
+        name={isOpen.value ? 'Chevron-up' : 'Chevron-down'}
+        color={isOpen.value ? 'primary' : 'gray2'}
         size={24}
       />
     </View>
   );
 }
 
-function AccordionContent({ description }: { description: string }) {
+function AccordionContent({
+  description,
+  isOpen,
+}: {
+  description: string;
+  isOpen: SharedValue<boolean>;
+}) {
+  const height = useSharedValue(0);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      height: withTiming(isOpen.value ? height.value : 0, { duration: 500 }),
+    };
+  });
+
   return (
-    <View style={styles.content}>
-      <Text>{description}</Text>
-    </View>
+    <Animated.View style={[animatedStyle, { overflow: 'hidden' }]}>
+      <View
+        style={styles.content}
+        onLayout={event => (height.value = event.nativeEvent.layout.height)}
+      >
+        <Text>{description}</Text>
+      </View>
+    </Animated.View>
   );
 }
 
@@ -76,6 +105,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   content: {
+    position: 'absolute',
     paddingBottom: 16,
     backgroundColor: theme.colors.gray1,
     paddingHorizontal: 16,
