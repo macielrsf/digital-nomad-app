@@ -37,7 +37,7 @@ export default function CityDetailsScreen() {
       <CityDetailsTouristAttractions
         touristAttractions={city.touristAttractions}
       />
-      <CityDetailsMap />
+      <CityDetailsMap location={city.location} />
       <CityDetailsRelatedCities />
     </Screen>
   );

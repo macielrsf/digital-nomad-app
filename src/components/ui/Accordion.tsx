@@ -22,7 +22,7 @@ export function Accordion({ title, description }: Props) {
 
   function handleToggle() {
     isOpen.value = !isOpen.value;
-    progress.value = withTiming(isOpen.value ? 1 : 0, { duration: 500 });
+    progress.value = withTiming(isOpen.value ? 1 : 0, { duration: 300 });
   }
 
   return (
