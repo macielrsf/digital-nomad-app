@@ -9,16 +9,16 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-type BottomSheetProps = {
+export type BottomSheetProps = {
   isOpen: SharedValue<boolean>;
-  onPress: () => void;
+  toggle: () => void;
   duration?: number;
 };
 
 export function BottomSheet({
   children,
   isOpen,
-  onPress,
+  toggle,
   duration = 500,
 }: PropsWithChildren<BottomSheetProps>) {
   const height = useSharedValue(0);
@@ -54,7 +54,7 @@ export function BottomSheet({
   return (
     <>
       <Animated.View style={[styles.backdrop, backdropAnimatedStyle]}>
-        <TouchableOpacity style={{ flex: 1 }} onPress={onPress} />
+        <TouchableOpacity style={{ flex: 1 }} onPress={toggle} />
       </Animated.View>
       <Animated.View
         style={[styles.sheet, sheetAnimatedStyle]}
