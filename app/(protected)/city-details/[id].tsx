@@ -51,7 +51,7 @@ export default function CityDetailsScreen() {
         <Pressable onPress={toggleBottomSheet}>
           <CityDetailsMap location={city.location} />
         </Pressable>
-        <CityDetailsRelatedCities />
+        <CityDetailsRelatedCities relatedCitiesIds={city.relatedCitiesIds} />
       </Screen>
       <BottomSheetMap
         location={city.location}

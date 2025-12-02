@@ -1,4 +1,4 @@
-import { ImageBackground, Pressable } from 'react-native';
+import { ImageBackground, Pressable, ImageBackgroundProps } from 'react-native';
 import { Link } from 'expo-router';
 
 import { CityPreview } from '../../types';
@@ -7,17 +7,25 @@ import { Text } from '../ui/Text';
 import { useAppTheme } from '@/src/theme/useAppTheme';
 import { Icon } from '../ui/Icon';
 
-export const CityCard = ({ city }: { city: CityPreview }) => {
+type CityCardProps = {
+  city: CityPreview;
+  style?: ImageBackgroundProps['style'];
+};
+
+export const CityCard = ({ city, style }: CityCardProps) => {
   const { borderRadii } = useAppTheme();
   return (
-    <Link href={`/city-details/${city.id}`} asChild>
+    <Link push href={`/city-details/${city.id}`} asChild>
       <Pressable>
         <ImageBackground
           source={city.coverImage}
-          style={{
-            width: '100%',
-            height: 280,
-          }}
+          style={[
+            {
+              width: '100%',
+              height: 280,
+            },
+            style,
+          ]}
           imageStyle={{
             borderRadius: borderRadii.default,
             opacity: 0.75,
