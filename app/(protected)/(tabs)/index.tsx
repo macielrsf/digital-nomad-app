@@ -1,7 +1,7 @@
-import { FlatList } from 'react-native';
 import { useRef, useState } from 'react';
 import { useScrollToTop } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Animated, { FadingTransition } from 'react-native-reanimated';
 
 import { CityPreview } from '../../../src/types';
 import { CityCard } from '@/src/components/cards/CityCard';
@@ -23,7 +23,7 @@ export default function HomeScreen() {
   });
 
   const insets = useSafeAreaInsets();
-  const flatListRef = useRef<FlatList>(null);
+  const flatListRef = useRef<Animated.FlatList>(null);
   useScrollToTop(flatListRef);
   const { spacing } = useAppTheme();
 
@@ -35,7 +35,8 @@ export default function HomeScreen() {
 
   return (
     <Screen style={{ paddingHorizontal: 0 }}>
-      <FlatList
+      <Animated.FlatList
+        itemLayoutAnimation={FadingTransition.duration(500)}
         ref={flatListRef}
         data={cityPreviewList}
         renderItem={renderItem}
