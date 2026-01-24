@@ -29,7 +29,7 @@ export type City = {
   name: string;
   country: string;
   description: string;
-  coverImage: any;
+  coverImage: number | string;
   categories: Category[];
   touristAttractions: TouristAttraction[];
   relatedCitiesIds: string[];

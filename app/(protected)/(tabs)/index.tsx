@@ -17,7 +17,7 @@ export default function HomeScreen() {
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
     null
   );
-  const { cityPreviewList } = useCities({
+  const { cities } = useCities({
     search,
     categoryId: selectedCategoryId,
   });
@@ -38,7 +38,7 @@ export default function HomeScreen() {
       <Animated.FlatList
         itemLayoutAnimation={FadingTransition.duration(500)}
         ref={flatListRef}
-        data={cityPreviewList}
+        data={cities}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         showsVerticalScrollIndicator={false}

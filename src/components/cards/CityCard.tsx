@@ -18,7 +18,11 @@ export const CityCard = ({ city, style }: CityCardProps) => {
     <Link push href={`/city-details/${city.id}`} asChild>
       <Pressable>
         <ImageBackground
-          source={city.coverImage}
+          source={
+            typeof city.coverImage === 'number'
+              ? city.coverImage
+              : { uri: city.coverImage }
+          }
           style={[
             {
               width: '100%',
