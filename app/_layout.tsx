@@ -5,6 +5,10 @@ import { ThemeProvider } from '@shopify/restyle';
 import theme from '@/src/theme/theme';
 import { useFonts } from 'expo-font';
 
+if (__DEV__) {
+  import('../ReactotronConfig');
+}
+
 export const unstable_settings = {
   anchor: '(tabs)',
 };
