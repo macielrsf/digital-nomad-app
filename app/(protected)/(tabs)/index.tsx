@@ -13,12 +13,12 @@ import { Box } from '@/src/components/ui/Box';
 import { useCities } from '@/src/data/useCities';
 
 export default function HomeScreen() {
-  const [search, setSearch] = useState('');
+  const [name, setName] = useState('');
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
     null
   );
   const { cities } = useCities({
-    search,
+    name,
     categoryId: selectedCategoryId,
   });
 
@@ -50,8 +50,8 @@ export default function HomeScreen() {
         ListHeaderComponent={
           <CityFilter
             categories={categories}
-            search={search}
-            onChangeSearch={setSearch}
+            search={name}
+            onChangeSearch={setName}
             selectedCategoryId={selectedCategoryId}
             onChangeSelectedCategoryId={setSelectedCategoryId}
           />

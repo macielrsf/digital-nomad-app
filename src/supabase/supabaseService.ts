@@ -3,9 +3,24 @@ import { CityPreview } from '../types';
 
 const storageURL = process.env.EXPO_PUBLIC_SUPABASE_STORAGE_URL;
 
-async function findAll(): Promise<CityPreview[]> {
+export type CityFilters = {
+  name?: string;
+  categoryId?: string | null;
+};
+
+async function findAll(filters: CityFilters): Promise<CityPreview[]> {
   try {
-    const { data } = await supabase.from('cities_with_full_info').select('*');
+    let query = supabase.from('cities_with_full_info').select('*');
+
+    if (filters.name) {
+      query = query.ilike('name', `%${filters.name}%`);
+    }
+
+    if (filters.categoryId) {
+      query = query.contains('categories', [{ id: filters.categoryId }]);
+    }
+
+    const { data } = await query;
 
     if (!data) {
       throw new Error('data is not available');
