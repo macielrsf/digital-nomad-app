@@ -1,5 +1,5 @@
 import { supabase } from './supabase';
-import { CityPreview } from '../types';
+import { Category, CategoryCode, CityPreview } from '../types';
 
 const storageURL = process.env.EXPO_PUBLIC_SUPABASE_STORAGE_URL;
 
@@ -17,7 +17,19 @@ async function findAll(filters: CityFilters): Promise<CityPreview[]> {
     }
 
     if (filters.categoryId) {
-      query = query.contains('categories', [{ id: filters.categoryId }]);
+      // Get city IDs that match the category filter
+      const { data: cityIds } = await supabase
+        .from('city_categories')
+        .select('city_id')
+        .eq('category_id', filters.categoryId);
+
+      if (cityIds && cityIds.length > 0) {
+        const ids = cityIds.map(row => row.city_id);
+        query = query.in('id', ids);
+      } else {
+        // No cities match this category, return empty array
+        return [];
+      }
     }
 
     const { data } = await query;
@@ -38,4 +50,18 @@ async function findAll(filters: CityFilters): Promise<CityPreview[]> {
   }
 }
 
-export const supabaseService = { findAll };
+async function listCategory(): Promise<Category[]> {
+  const { data, error } = await supabase.from('categories').select('*');
+  if (error) {
+    throw new Error('error trying to list categories');
+  }
+
+  return data.map(row => ({
+    id: row.id,
+    description: row.description,
+    name: row.name,
+    code: row.code as CategoryCode,
+  }));
+}
+
+export const supabaseService = { findAll, listCategory };
