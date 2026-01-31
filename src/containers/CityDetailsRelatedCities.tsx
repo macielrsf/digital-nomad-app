@@ -7,10 +7,10 @@ import { CityCard } from '../components/cards/CityCard';
 import { useAppTheme } from '../theme/useAppTheme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-type Props = Pick<City, 'relatedCitiesIds'>;
+type Props = Pick<City, 'id'>;
 
-export function CityDetailsRelatedCities({ relatedCitiesIds }: Props) {
-  const cities = useRelatedCities(relatedCitiesIds);
+export function CityDetailsRelatedCities({ id }: Props) {
+  const cities = useRelatedCities(id);
   const { spacing } = useAppTheme();
   const { bottom } = useSafeAreaInsets();
 

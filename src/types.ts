@@ -32,7 +32,7 @@ export type City = {
   coverImage: number | string;
   categories: Category[];
   touristAttractions: TouristAttraction[];
-  relatedCitiesIds: string[];
+  // relatedCitiesIds: string[];
   location: {
     latitude: number;
     longitude: number;

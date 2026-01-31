@@ -14,8 +14,8 @@ import { Divider } from '@/src/components/ui/Divider';
 import BottomSheetMap from '@/src/components/map/BottomSheetMap';
 
 export default function CityDetailsScreen() {
-  const { id } = useLocalSearchParams();
-  const city = useCityDetails(id as string);
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const { city } = useCityDetails(id);
 
   const bottomSheetIsOpen = useSharedValue(false);
 
@@ -51,7 +51,7 @@ export default function CityDetailsScreen() {
         <Pressable onPress={toggleBottomSheet}>
           <CityDetailsMap location={city.location} />
         </Pressable>
-        <CityDetailsRelatedCities relatedCitiesIds={city.relatedCitiesIds} />
+        <CityDetailsRelatedCities id={city.id} />
       </Screen>
       <BottomSheetMap
         location={city.location}

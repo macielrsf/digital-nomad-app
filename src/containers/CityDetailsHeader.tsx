@@ -18,7 +18,11 @@ export function CityDetailsHeader({ city }: { city: CityDetailsHeaderProps }) {
       <ImageBackground
         style={{ width: '100%', height: 250 }}
         imageStyle={{ borderBottomRightRadius: 40 }}
-        source={city.coverImage}
+        source={
+          typeof city.coverImage === 'number'
+            ? city.coverImage
+            : { uri: city.coverImage }
+        }
       >
         <Box
           flexDirection='row'
