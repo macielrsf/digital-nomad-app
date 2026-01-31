@@ -15,7 +15,7 @@ import BottomSheetMap from '@/src/components/map/BottomSheetMap';
 
 export default function CityDetailsScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { city } = useCityDetails(id);
+  const { data: city } = useCityDetails(id);
 
   const bottomSheetIsOpen = useSharedValue(false);
 

@@ -17,11 +17,11 @@ export default function HomeScreen() {
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
     null
   );
-  const { cities } = useCities({
+  const { data: cities } = useCities({
     name,
     categoryId: selectedCategoryId,
   });
-  const { categories } = useCategories();
+  const { data: categories } = useCategories();
 
   const insets = useSafeAreaInsets();
   const flatListRef = useRef<Animated.FlatList>(null);

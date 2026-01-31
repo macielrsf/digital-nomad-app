@@ -6,7 +6,7 @@ import { Category } from '../types';
 import { ScrollView } from 'react-native';
 
 type CityFilterProps = {
-  categories: Category[];
+  categories?: Category[];
   search: string;
   onChangeSearch: (search: string) => void;
   selectedCategoryId: string | null;
@@ -34,7 +34,7 @@ export function CityFilter({
       </Box>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <Box mt='s16' flexDirection='row' gap='s8' paddingHorizontal='padding'>
-          {categories.map(category => (
+          {categories?.map(category => (
             <CategoryBadge
               key={category.id}
               category={category}
