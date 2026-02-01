@@ -2,7 +2,7 @@ import { useLocalSearchParams } from 'expo-router';
 import { Pressable } from 'react-native';
 import { useSharedValue } from 'react-native-reanimated';
 
-import { useCityDetails } from '@/src/data/useCityDetails';
+import { useCityFindById } from '@/src/domain/city/operations/useCityFindById';
 import { CityDetailsHeader } from '@/src/containers/CityDetailsHeader';
 import { CityDetailsInfo } from '@/src/containers/CityDetailsInfo';
 import { CityDetailsTouristAttractions } from '@/src/containers/CityDetailsTouristAttractions';
@@ -15,7 +15,7 @@ import BottomSheetMap from '@/src/components/map/BottomSheetMap';
 
 export default function CityDetailsScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { data: city } = useCityDetails(id);
+  const { data: city } = useCityFindById(id);
 
   const bottomSheetIsOpen = useSharedValue(false);
 

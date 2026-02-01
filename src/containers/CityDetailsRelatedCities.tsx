@@ -1,7 +1,7 @@
 import { Box } from '../components/ui/Box';
 import { Text } from '../components/ui/Text';
-import { City } from '../types';
-import { useRelatedCities } from '../data/useRelatedCities';
+import { City } from '../domain/city/City';
+import { useGetRelatedCities } from '../domain/city/operations/useGetRelatedCities';
 import { ScrollView, useWindowDimensions } from 'react-native';
 import { CityCard } from '../components/cards/CityCard';
 import { useAppTheme } from '../theme/useAppTheme';
@@ -10,7 +10,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 type Props = Pick<City, 'id'>;
 
 export function CityDetailsRelatedCities({ id }: Props) {
-  const { data: cities } = useRelatedCities(id);
+  const { data: cities } = useGetRelatedCities(id);
   const { spacing } = useAppTheme();
   const { bottom } = useSafeAreaInsets();
 

@@ -2,7 +2,7 @@ import { Box } from '../components/ui/Box';
 import { SearchInput } from '../components/ui/SearchInput';
 import { useAppTheme } from '../theme/useAppTheme';
 import { CategoryBadge } from '../components/category/CategoryBadge';
-import { Category } from '../types';
+import { Category } from '../domain/category/Category';
 import { ScrollView } from 'react-native';
 
 type CityFilterProps = {

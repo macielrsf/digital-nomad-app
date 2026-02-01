@@ -1,6 +1,6 @@
 import { Box } from '../components/ui/Box';
 import { Text } from '../components/ui/Text';
-import { City } from '../types';
+import { City } from '../domain/city/City';
 import { Accordion } from '../components/ui/Accordion';
 
 type Props = Pick<City, 'touristAttractions'>;

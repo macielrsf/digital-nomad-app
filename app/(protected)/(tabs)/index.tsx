@@ -3,24 +3,30 @@ import { useScrollToTop } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Animated, { FadingTransition } from 'react-native-reanimated';
 
-import { CityPreview } from '../../../src/types';
 import { CityCard } from '@/src/components/cards/CityCard';
 import { Screen } from '@/src/components/layout/Screen';
 import { useAppTheme } from '@/src/theme/useAppTheme';
 import { CityFilter } from '@/src/containers/CityFilter';
-import { useCategories } from '@/src/data/useCategories';
+import { useCategories } from '@/src/domain/category/operations/useCategories';
 import { Box } from '@/src/components/ui/Box';
-import { useCities } from '@/src/data/useCities';
+import { CityPreview } from '@/src/domain/city/City';
+
+import { useCityFindAll } from '@/src/domain/city/operations/useCityFindAll';
+import { useDebounce } from '@/src/hooks/useDebounce';
 
 export default function HomeScreen() {
   const [name, setName] = useState('');
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
     null
   );
-  const { data: cities } = useCities({
-    name,
+
+  const debouncedCityName = useDebounce(name, 500);
+
+  const { data: cities } = useCityFindAll({
+    name: debouncedCityName,
     categoryId: selectedCategoryId,
   });
+
   const { data: categories } = useCategories();
 
   const insets = useSafeAreaInsets();

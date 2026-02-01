@@ -1,6 +1,6 @@
 import { ImageBackground, ScrollView } from 'react-native';
 import { Box } from '../components/ui/Box';
-import { City } from '../types';
+import { City } from '../domain/city/City';
 import { IconButton } from '../components/ui/IconButton';
 import { router } from 'expo-router';
 import { Icon } from '../components/ui/Icon';

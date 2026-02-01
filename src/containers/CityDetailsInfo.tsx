@@ -1,6 +1,6 @@
 import { Box } from '../components/ui/Box';
 import { Text } from '../components/ui/Text';
-import { City } from '../types';
+import { City } from '../domain/city/City';
 
 type Props = Pick<City, 'name' | 'description' | 'country'>;
 

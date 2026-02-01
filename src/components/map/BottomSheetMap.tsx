@@ -1,7 +1,7 @@
 import MapView from 'react-native-maps';
 import { useWindowDimensions } from 'react-native';
 import { BottomSheet, BottomSheetProps } from '@/src/components/ui/BottomSheet';
-import { City } from '@/src/types';
+import { City } from '@/src/domain/city/City';
 import { useAppTheme } from '@/src/theme/useAppTheme';
 import { IconButton } from '../ui/IconButton';
 import { Box } from '../ui/Box';

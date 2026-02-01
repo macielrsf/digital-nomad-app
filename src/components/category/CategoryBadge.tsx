@@ -1,4 +1,4 @@
-import { Category, CategoryCode } from '@/src/types';
+import { Category, CategoryCode } from '@/src/domain/category/Category';
 import { Badge, BadgeProps } from '../ui/Badge';
 import { IconName } from '../ui/Icon';
 
