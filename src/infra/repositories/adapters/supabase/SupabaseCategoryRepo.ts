@@ -1,6 +1,5 @@
-import { Category, CategoryCode } from '../domain/category/Category';
-import { ICategoryRepo } from '../domain/category/ICategoryRepo';
-
+import { Category, CategoryCode } from '@/src/domain/category/Category';
+import { ICategoryRepo } from '@/src/domain/category/ICategoryRepo';
 import { supabase } from './supabase';
 
 async function findAll(): Promise<Category[]> {
@@ -17,6 +16,6 @@ async function findAll(): Promise<Category[]> {
   }));
 }
 
-export const supabaseCategoryRepo: ICategoryRepo = {
+export const SupabaseCategoryRepo: ICategoryRepo = {
   findAll,
 };
