@@ -1,4 +1,4 @@
-import { Category } from '../domain/category/Category';
+import { Category } from '../../../../../domain/category/Category';
 
 export const categories: Category[] = [
   {

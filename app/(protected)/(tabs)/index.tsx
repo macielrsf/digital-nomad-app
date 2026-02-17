@@ -7,7 +7,7 @@ import { CityCard } from '@/src/components/cards/CityCard';
 import { Screen } from '@/src/components/layout/Screen';
 import { useAppTheme } from '@/src/theme/useAppTheme';
 import { CityFilter } from '@/src/containers/CityFilter';
-import { useCategories } from '@/src/domain/category/operations/useCategories';
+import { useCategoryFindAll } from '@/src/domain/category/operations/useCategoryFindAll';
 import { Box } from '@/src/components/ui/Box';
 import { CityPreview } from '@/src/domain/city/City';
 
@@ -27,7 +27,7 @@ export default function HomeScreen() {
     categoryId: selectedCategoryId,
   });
 
-  const { data: categories } = useCategories();
+  const { data: categories } = useCategoryFindAll();
 
   const insets = useSafeAreaInsets();
   const flatListRef = useRef<Animated.FlatList>(null);
