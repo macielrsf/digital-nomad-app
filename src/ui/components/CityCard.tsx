@@ -1,11 +1,11 @@
 import { ImageBackground, Pressable, ImageBackgroundProps } from 'react-native';
 import { Link } from 'expo-router';
 
-import { CityPreview } from '../../types';
-import { Box } from '../ui/Box';
-import { Text } from '../ui/Text';
-import { useAppTheme } from '@/src/theme/useAppTheme';
-import { Icon } from '../ui/Icon';
+import { CityPreview } from '@/src/domain/city/City';
+import { Box } from './Box';
+import { Text } from './Text';
+import { useAppTheme } from '../theme/useAppTheme';
+import { Icon } from './Icon';
 
 type CityCardProps = {
   city: CityPreview;

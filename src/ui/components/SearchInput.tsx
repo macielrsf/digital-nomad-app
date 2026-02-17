@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { Box, BoxProps } from './Box';
 import { IconButton } from './IconButton';
-import { useAppTheme } from '../../theme/useAppTheme';
+import { useAppTheme } from '../theme/useAppTheme';
 
 type SearchInputProps = {} & Pick<
   TextInputProps,

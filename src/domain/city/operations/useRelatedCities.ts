@@ -1,7 +1,7 @@
 import { useRepository } from '@/src/infra/repositories/RepositoryProvider';
-import { useFetchData } from '@/src/data/useFetchData';
+import { useAppQuery } from '@/src/infra/operations/useAppQuery';
 
 export function useRelatedCities(id: string) {
   const { city } = useRepository();
-  return useFetchData(() => city.getRelatedCities(id), [id]);
+  return useAppQuery(() => city.getRelatedCities(id), [id]);
 }

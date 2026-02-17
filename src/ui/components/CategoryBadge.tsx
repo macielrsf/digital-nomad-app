@@ -1,6 +1,6 @@
 import { Category, CategoryCode } from '@/src/domain/category/Category';
-import { Badge, BadgeProps } from '../ui/Badge';
-import { IconName } from '../ui/Icon';
+import { Badge, BadgeProps } from './Badge';
+import { IconName } from './Icon';
 
 type CategoryBadgeProps = {
   category: Category;

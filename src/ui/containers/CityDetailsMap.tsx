@@ -1,8 +1,7 @@
-import { Box } from '../components/ui/Box';
-import { Text } from '../components/ui/Text';
-
+import { City } from '@/src/domain/city/City';
 import MapView from 'react-native-maps';
-import { City } from '../domain/city/City';
+import { Box } from '../components/Box';
+import { Text } from '../components/Text';
 import { useAppTheme } from '../theme/useAppTheme';
 
 type CityDetailsMapProps = Pick<City, 'location'>;

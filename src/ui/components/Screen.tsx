@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { Box, BoxProps } from '../ui/Box';
+import { Box, BoxProps } from './Box';
 import { ScrollView, View, ScrollViewProps } from 'react-native';
 
 type ScreenProps = {

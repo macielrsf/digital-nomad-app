@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, View } from 'react-native';
 import { Text } from './Text';
 import { Box } from './Box';
-import theme from '@/src/theme/theme';
+import theme from '../theme/theme';
 import Animated, {
   useSharedValue,
   SharedValue,

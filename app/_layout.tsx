@@ -1,12 +1,12 @@
 //import { SupabaseRepositories } from '@/src/infra/repositories/adapters/supabase';
 import { InMemoryRepositories } from '@/src/infra/repositories/adapters/inMemory';
 import { RepositoryProvider } from '@/src/infra/repositories/RepositoryProvider';
+import theme from '@/src/ui/theme/theme';
+import { ThemeProvider } from '@shopify/restyle';
+import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
-import { ThemeProvider } from '@shopify/restyle';
-import theme from '@/src/theme/theme';
-import { useFonts } from 'expo-font';
 
 if (__DEV__) {
   import('../ReactotronConfig');

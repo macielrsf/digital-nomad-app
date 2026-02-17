@@ -1,12 +1,13 @@
 import { ImageBackground, ScrollView } from 'react-native';
-import { Box } from '../components/ui/Box';
-import { City } from '../domain/city/City';
-import { IconButton } from '../components/ui/IconButton';
-import { router } from 'expo-router';
-import { Icon } from '../components/ui/Icon';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { CategoryBadge } from '../components/category/CategoryBadge';
-import { BadgeHeight } from '../components/ui/Badge';
+
+import { City } from '@/src/domain/city/City';
+import { Box } from '../components/Box';
+import { CategoryBadge } from '../components/CategoryBadge';
+import { Icon } from '../components/Icon';
+import { IconButton } from '../components/IconButton';
+import { BadgeHeight } from '../components/Badge';
+import { router } from 'expo-router';
 
 type CityDetailsHeaderProps = Pick<City, 'id' | 'coverImage' | 'categories'>;
 

@@ -1,9 +1,10 @@
-import { Box } from '../components/ui/Box';
-import { SearchInput } from '../components/ui/SearchInput';
-import { useAppTheme } from '../theme/useAppTheme';
-import { CategoryBadge } from '../components/category/CategoryBadge';
-import { Category } from '../domain/category/Category';
 import { ScrollView } from 'react-native';
+
+import { Category } from '@/src/domain/category/Category';
+import { Box } from '../components/Box';
+import { CategoryBadge } from '../components/CategoryBadge';
+import { SearchInput } from '../components/SearchInput';
+import { useAppTheme } from '../theme/useAppTheme';
 
 type CityFilterProps = {
   categories?: Category[];

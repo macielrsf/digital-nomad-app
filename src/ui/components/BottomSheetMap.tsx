@@ -1,10 +1,11 @@
 import MapView from 'react-native-maps';
 import { useWindowDimensions } from 'react-native';
-import { BottomSheet, BottomSheetProps } from '@/src/components/ui/BottomSheet';
+
 import { City } from '@/src/domain/city/City';
-import { useAppTheme } from '@/src/theme/useAppTheme';
-import { IconButton } from '../ui/IconButton';
-import { Box } from '../ui/Box';
+import { BottomSheet, BottomSheetProps } from './BottomSheet';
+import { IconButton } from './IconButton';
+import { Box } from './Box';
+import { useAppTheme } from '../theme/useAppTheme';
 
 type BottomSheetMapProps = Omit<BottomSheetProps, 'children'> & {
   location: Pick<City, 'location'>['location'];

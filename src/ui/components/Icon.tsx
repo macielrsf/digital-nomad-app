@@ -1,6 +1,6 @@
 import createIconSetFromIcoMoon from '@expo/vector-icons/createIconSetFromIcoMoon';
-import { ThemeColors } from '../../theme/theme';
-import { useAppTheme } from '../../theme/useAppTheme';
+import { ThemeColors } from '../theme/theme';
+import { useAppTheme } from '../theme/useAppTheme';
 
 const IconFromIcoMoon = createIconSetFromIcoMoon(
   require('../../../assets/icons/selection.json'),

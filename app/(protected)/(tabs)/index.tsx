@@ -3,16 +3,16 @@ import { useScrollToTop } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Animated, { FadingTransition } from 'react-native-reanimated';
 
-import { CityCard } from '@/src/components/cards/CityCard';
-import { Screen } from '@/src/components/layout/Screen';
-import { useAppTheme } from '@/src/theme/useAppTheme';
-import { CityFilter } from '@/src/containers/CityFilter';
 import { useCategoryFindAll } from '@/src/domain/category/operations/useCategoryFindAll';
-import { Box } from '@/src/components/ui/Box';
 import { CityPreview } from '@/src/domain/city/City';
+import { Box } from '@/src/ui/components/Box';
+import { CityCard } from '@/src/ui/components/CityCard';
+import { Screen } from '@/src/ui/components/Screen';
+import { CityFilter } from '@/src/ui/containers/CityFilter';
 
 import { useCityFindAll } from '@/src/domain/city/operations/useCityFindAll';
 import { useDebounce } from '@/src/hooks/useDebounce';
+import { useAppTheme } from '@/src/ui/theme/useAppTheme';
 
 export default function HomeScreen() {
   const [name, setName] = useState('');

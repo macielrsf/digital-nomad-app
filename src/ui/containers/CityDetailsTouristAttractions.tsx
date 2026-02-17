@@ -1,7 +1,7 @@
-import { Box } from '../components/ui/Box';
-import { Text } from '../components/ui/Text';
-import { City } from '../domain/city/City';
-import { Accordion } from '../components/ui/Accordion';
+import { City } from '@/src/domain/city/City';
+import { Accordion } from '../components/Accordion';
+import { Box } from '../components/Box';
+import { Text } from '../components/Text';
 
 type Props = Pick<City, 'touristAttractions'>;
 
