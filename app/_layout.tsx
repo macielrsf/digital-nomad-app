@@ -1,5 +1,5 @@
-import { SupabaseRepositories } from '@/src/infra/repositories/adapters/supabase';
-//import { InMemoryRepositories } from '@/src/infra/repositories/adapters/inMemory';
+//import { SupabaseRepositories } from '@/src/infra/repositories/adapters/supabase';
+import { InMemoryRepositories } from '@/src/infra/repositories/adapters/inMemory';
 import { RepositoryProvider } from '@/src/infra/repositories/RepositoryProvider';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -43,7 +43,7 @@ export default function RootLayout() {
   }
 
   return (
-    <RepositoryProvider value={SupabaseRepositories}>
+    <RepositoryProvider value={InMemoryRepositories}>
       <ThemeProvider theme={theme}>
         <Stack>
           <Stack.Screen name='(protected)' options={{ headerShown: false }} />
