@@ -11,8 +11,8 @@ import { Screen } from '@/src/ui/components/Screen';
 import { CityFilter } from '@/src/ui/containers/CityFilter';
 
 import { useCityFindAll } from '@/src/domain/city/operations/useCityFindAll';
-import { useDebounce } from '@/src/hooks/useDebounce';
 import { useAppTheme } from '@/src/ui/theme/useAppTheme';
+import { useDebounce } from '@/src/utils/hooks/useDebounce';
 
 export default function HomeScreen() {
   const [name, setName] = useState('');
