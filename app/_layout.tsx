@@ -45,7 +45,13 @@ export default function RootLayout() {
   return (
     <RepositoryProvider value={InMemoryRepositories}>
       <ThemeProvider theme={theme}>
-        <Stack>
+        <Stack
+          screenOptions={{
+            contentStyle: { backgroundColor: theme.colors.background },
+            headerShown: false,
+            fullScreenGestureEnabled: true,
+          }}
+        >
           <Stack.Screen name='(protected)' options={{ headerShown: false }} />
           <Stack.Screen name='+not-found' options={{ headerShown: false }} />
           <Stack.Screen name='sign-in' options={{ headerShown: false }} />
