@@ -267,6 +267,7 @@
 ### Within Each User Story
 
 **Critical Path for Each Story:**
+
 1. Domain entities first (T012-T013 for US1, etc.)
 2. Infrastructure implementation (T016-T019 for US1, etc.)
 3. Domain operations (T014-T015 for US1, etc.)
@@ -277,31 +278,39 @@
 ### Parallel Opportunities
 
 **Setup Phase (Phase 1):**
+
 - T002 (NetInfo), T003 (file-system), T006 (Realm index) can run in parallel
 
 **Foundational Phase (Phase 2):**
+
 - T007 (NetworkService), T008 (domain structure), T010 (models directory) can run in parallel
 
 **Within User Story 1:**
+
 - T012 (OfflineCity entity), T013 (IOfflineCityRepo) can run in parallel
 - T020 (OfflineIndicator), T021 (OfflineBadge) can run in parallel
 
 **Within User Story 2:**
+
 - T027 (DownloadJob entity), T028 (IDownloadJobRepo) can run in parallel
 - T039 (DownloadButton), T040 (DownloadProgress) can run in parallel
 
 **Within User Story 3:**
+
 - T047 (SyncAction entity), T048 (ISyncActionRepo) can run in parallel
 - T061 (SyncPendingIndicator), T062 (SyncNotification) can run in parallel
 
 **Within User Story 4:**
+
 - T069 (OfflinePreferences entity), T070 (IOfflinePreferencesRepo) can run in parallel
 
 **Cross-Story Parallelization:**
+
 - Once Foundational is complete, multiple developers can work on different user stories in parallel
 - Recommended: One developer on US1 (MVP), another on US2 (downloads), another on US3 (sync)
 
 **Polish Phase (Phase 7):**
+
 - T096 (README), T097 (quickstart), T100 (error boundaries), T101 (analytics), T105 (migration guide) can run in parallel
 
 ---
@@ -317,6 +326,7 @@
 **Why**: US1 delivers the core value of offline mode - auto-caching cities for offline access. Users can view previously loaded cities without internet. This is the essential feature that digital nomads need most.
 
 **MVP Demo**:
+
 1. View 3 cities while online (auto-cached)
 2. Enable airplane mode
 3. Navigate to those 3 cities (works offline)
