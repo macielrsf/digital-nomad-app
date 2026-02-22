@@ -130,6 +130,7 @@ app/
 **Status**: ✅ No constitution violations detected
 
 All architectural decisions align with Clean Architecture and SOLID principles:
+
 - Realm.js adapter follows existing repository pattern (similar to InMemory/Supabase adapters)
 - Domain layer remains independent with interface definitions
 - Infrastructure layer handles all storage implementation details

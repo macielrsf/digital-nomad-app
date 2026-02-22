@@ -50,11 +50,13 @@ npx expo install expo-file-system
 ### 3. iOS/Android Configuration
 
 **iOS** (ios/Podfile):
+
 ```ruby
 # No additional configuration needed - Realm auto-links
 ```
 
 **Android** (android/app/build.gradle):
+
 ```gradle
 // No additional configuration needed - Realm auto-links
 ```
@@ -158,13 +160,13 @@ export interface IOfflineCityRepo {
   findById(cityId: string): Promise<OfflineCity | null>;
   findAll(): Promise<OfflineCity[]>;
   getTotalStorageUsed(): Promise<number>;
-  
+
   // Write operations
   save(offlineCity: OfflineCity): Promise<void>;
   updateLastAccessed(cityId: string): Promise<void>;
   delete(cityId: string): Promise<void>;
   deleteAll(): Promise<void>;
-  
+
   // Queries
   findLRUCandidates(count: number): Promise<OfflineCity[]>; // For eviction
   findStale(daysOld: number): Promise<OfflineCity[]>;
@@ -186,17 +188,17 @@ import { useRepositories } from '@/src/infra/repositories/RepositoryProvider';
  */
 export const useOfflineCityGet = (cityId: string) => {
   const { offlineCityRepo } = useRepositories();
-  
+
   return useAppQuery({
     queryKey: ['offline-city', cityId],
     queryFn: async () => {
       const offlineCity = await offlineCityRepo.findById(cityId);
-      
+
       // Update last accessed timestamp (for LRU)
       if (offlineCity) {
         await offlineCityRepo.updateLastAccessed(cityId);
       }
-      
+
       return offlineCity;
     },
   });
@@ -216,9 +218,15 @@ import { City } from '@/src/domain/city/City';
  */
 export const useOfflineCityCache = () => {
   const { offlineCityRepo } = useRepositories();
-  
+
   return useAppMutation({
-    mutationFn: async ({ city, images }: { city: City; images: CachedImage[] }) => {
+    mutationFn: async ({
+      city,
+      images,
+    }: {
+      city: City;
+      images: CachedImage[];
+    }) => {
       const offlineCity: OfflineCity = {
         cityId: city.id,
         cityData: city,
@@ -229,7 +237,7 @@ export const useOfflineCityCache = () => {
         isExplicitDownload: false, // Auto-cached
         version: 1,
       };
-      
+
       await offlineCityRepo.save(offlineCity);
     },
     onSuccess: () => {
@@ -261,25 +269,25 @@ import { RealmOfflineCity } from './models/RealmOfflineCity';
 
 export class RealmOfflineCityRepo implements IOfflineCityRepo {
   constructor(private realm: Realm) {}
-  
+
   async findById(cityId: string): Promise<OfflineCity | null> {
     const realmCity = this.realm
       .objects<RealmOfflineCity>('OfflineCity')
       .filtered('cityId == $0', cityId)[0];
-    
+
     if (!realmCity) return null;
-    
+
     return this.toDomain(realmCity);
   }
-  
+
   async findAll(): Promise<OfflineCity[]> {
     const realmCities = this.realm
       .objects<RealmOfflineCity>('OfflineCity')
       .sorted('lastAccessedAt', true); // Most recent first
-    
+
     return Array.from(realmCities).map(this.toDomain);
   }
-  
+
   async save(offlineCity: OfflineCity): Promise<void> {
     this.realm.write(() => {
       this.realm.create<RealmOfflineCity>(
@@ -299,34 +307,34 @@ export class RealmOfflineCityRepo implements IOfflineCityRepo {
       );
     });
   }
-  
+
   async delete(cityId: string): Promise<void> {
     this.realm.write(() => {
       const city = this.realm
         .objects<RealmOfflineCity>('OfflineCity')
         .filtered('cityId == $0', cityId)[0];
-      
+
       if (city) {
         this.realm.delete(city);
       }
     });
   }
-  
+
   async getTotalStorageUsed(): Promise<number> {
     const cities = this.realm.objects<RealmOfflineCity>('OfflineCity');
     return cities.sum('storageSize');
   }
-  
+
   async findLRUCandidates(count: number): Promise<OfflineCity[]> {
     const realmCities = this.realm
       .objects<RealmOfflineCity>('OfflineCity')
       .filtered('isExplicitDownload == false')
       .sorted('lastAccessedAt', false) // Oldest first
       .slice(0, count);
-    
+
     return Array.from(realmCities).map(this.toDomain);
   }
-  
+
   private toDomain(realmCity: RealmOfflineCity): OfflineCity {
     return {
       cityId: realmCity.cityId,
@@ -353,16 +361,16 @@ import { useRealm } from '@realm/react';
 
 export const RepositoryProvider: React.FC<Props> = ({ children }) => {
   const realm = useRealm(); // Get Realm instance from RealmProvider context
-  
+
   const repositories = useMemo(() => ({
     // Existing repos
     cityRepo: USE_SUPABASE ? new SupabaseCityRepo() : new InMemoryCityRepo(),
-    
+
     // New offline repos (always use Realm)
     offlineCityRepo: new RealmOfflineCityRepo(realm),
     syncActionRepo: new RealmSyncActionRepo(realm),
   }), [realm]);
-  
+
   return (
     <RepositoryContext.Provider value={repositories}>
       {children}
@@ -382,22 +390,22 @@ import NetInfo from '@react-native-community/netinfo';
 export const useNetworkStatus = () => {
   const [isOnline, setIsOnline] = useState(true);
   const [connectionType, setConnectionType] = useState<string>('unknown');
-  
+
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener(state => {
       setIsOnline(state.isConnected ?? false);
       setConnectionType(state.type);
     });
-    
+
     // Get initial state
     NetInfo.fetch().then(state => {
       setIsOnline(state.isConnected ?? false);
       setConnectionType(state.type);
     });
-    
+
     return () => unsubscribe();
   }, []);
-  
+
   return {
     isOnline,
     isWifi: connectionType === 'wifi',
@@ -423,7 +431,7 @@ export default function CityDetailsScreen() {
   const { data: city, isLoading } = useCityFindById(cityId);
   const cacheCity = useOfflineCityCache();
   const { isOnline } = useNetworkStatus();
-  
+
   // Auto-cache city when loaded (P1 - MVP)
   useEffect(() => {
     if (city && isOnline && !cacheCity.isPending) {
@@ -434,11 +442,11 @@ export default function CityDetailsScreen() {
         size: 500000, // TODO: Calculate actual size
         type: 'gallery' as const,
       }));
-      
+
       cacheCity.mutate({ city, images });
     }
   }, [city, isOnline]);
-  
+
   return (
     <Screen>
       <CityDetailsHeader city={city} />
@@ -458,14 +466,14 @@ import { Box, Text } from '@/src/ui/components';
 
 export const OfflineIndicator = () => {
   const { isOnline } = useNetworkStatus();
-  
+
   if (isOnline) return null;
-  
+
   return (
-    <Box 
-      backgroundColor="warning" 
-      padding="s" 
-      flexDirection="row" 
+    <Box
+      backgroundColor="warning"
+      padding="s"
+      flexDirection="row"
       justifyContent="center"
     >
       <Icon name="wifi-off" size={16} color="white" />
@@ -492,7 +500,7 @@ interface Props {
 export const DownloadButton: React.FC<Props> = ({ cityId, isDownloaded }) => {
   const download = useOfflineCityDownload();
   const { isOnline, isWifi } = useNetworkStatus();
-  
+
   if (isDownloaded) {
     return (
       <Badge variant="success">
@@ -501,7 +509,7 @@ export const DownloadButton: React.FC<Props> = ({ cityId, isDownloaded }) => {
       </Badge>
     );
   }
-  
+
   return (
     <Button
       variant="outline"
@@ -533,20 +541,22 @@ describe('useOfflineCityGet', () => {
   it('should retrieve cached city by ID', async () => {
     const mockCity = { cityId: 'city-123', cityData: { name: 'Chiang Mai' } };
     mockOfflineCityRepo.findById.mockResolvedValue(mockCity);
-    
+
     const { result } = renderHook(() => useOfflineCityGet('city-123'));
-    
+
     await waitFor(() => expect(result.current.data).toEqual(mockCity));
   });
-  
+
   it('should update last accessed timestamp', async () => {
     const mockCity = { cityId: 'city-123', cityData: { name: 'Chiang Mai' } };
     mockOfflineCityRepo.findById.mockResolvedValue(mockCity);
-    
+
     const { result } = renderHook(() => useOfflineCityGet('city-123'));
-    
+
     await waitFor(() => {
-      expect(mockOfflineCityRepo.updateLastAccessed).toHaveBeenCalledWith('city-123');
+      expect(mockOfflineCityRepo.updateLastAccessed).toHaveBeenCalledWith(
+        'city-123'
+      );
     });
   });
 });
@@ -564,16 +574,16 @@ import { realmConfig } from '../realmConfig';
 describe('RealmOfflineCityRepo', () => {
   let realm: Realm;
   let repo: RealmOfflineCityRepo;
-  
+
   beforeEach(async () => {
     realm = await Realm.open({ ...realmConfig, inMemory: true });
     repo = new RealmOfflineCityRepo(realm);
   });
-  
+
   afterEach(() => {
     realm.close();
   });
-  
+
   it('should save and retrieve offline city', async () => {
     const offlineCity = {
       cityId: 'city-123',
@@ -585,10 +595,10 @@ describe('RealmOfflineCityRepo', () => {
       isExplicitDownload: false,
       version: 1,
     };
-    
+
     await repo.save(offlineCity);
     const retrieved = await repo.findById('city-123');
-    
+
     expect(retrieved).toMatchObject({
       cityId: 'city-123',
       cityData: { name: 'Chiang Mai' },
@@ -606,8 +616,8 @@ describe('RealmOfflineCityRepo', () => {
 ```typescript
 // Always try offline first, fallback to online
 const { data: offlineCity } = useOfflineCityGet(cityId);
-const { data: onlineCity } = useCityFindById(cityId, { 
-  enabled: !offlineCity && isOnline 
+const { data: onlineCity } = useCityFindById(cityId, {
+  enabled: !offlineCity && isOnline,
 });
 
 const city = offlineCity?.cityData || onlineCity;
@@ -619,12 +629,15 @@ const city = offlineCity?.cityData || onlineCity;
 const saveCity = useSaveCityOffline();
 
 // User saves city (works offline)
-saveCity.mutate({ cityId: 'city-123' }, {
-  onSuccess: () => {
-    // City saved locally immediately
-    // Sync queued for background processing
-  },
-});
+saveCity.mutate(
+  { cityId: 'city-123' },
+  {
+    onSuccess: () => {
+      // City saved locally immediately
+      // Sync queued for background processing
+    },
+  }
+);
 ```
 
 ### Pattern 3: Background Sync on Reconnect
@@ -673,10 +686,10 @@ if (totalStorage > MAX_STORAGE) {
 if (error.code === 'CONFLICT') {
   // Fetch latest from server
   const latestCity = await fetchCityFromServer(cityId);
-  
+
   // Overwrite local with server version
   await offlineCityRepo.save(latestCity);
-  
+
   // Notify user
   showNotification('City data was updated on server');
 }
@@ -693,7 +706,7 @@ import * as FileSystem from 'expo-file-system';
 async function cacheImage(url: string): Promise<string> {
   const filename = url.split('/').pop();
   const localUri = `${FileSystem.documentDirectory}${filename}`;
-  
+
   await FileSystem.downloadAsync(url, localUri);
   return localUri;
 }
@@ -710,6 +723,7 @@ async function cacheImage(url: string): Promise<string> {
 5. **Implement P4**: Storage management UI
 
 **Reference**:
+
 - [Realm.js Documentation](https://www.mongodb.com/docs/realm/sdk/react-native/)
 - [NetInfo Documentation](https://github.com/react-native-netinfo/react-native-netinfo)
 - [Offline-First Design Patterns](https://offlinefirst.org/)
