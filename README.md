@@ -1,50 +1,93 @@
-# Welcome to your Expo app 👋
+# Digital Nomad App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicativo completo inspirado nos principais destinos de viagem escolhidos por nômades digitais. O usuário poderá explorar destinos ao redor do mundo, visualizar detalhes como pontos turísticos, descrição da cidade e mapa interativo. O app inclui funcionalidades como busca, favoritos, filtros e autenticação.
 
-## Get started
+[Veja o design completo no Figma.](https://www.figma.com/design/NM5CCCaGU5ovcJzFqPTlaM/Digital-Nomad--Expo-?node-id=0-1&p=f&t=UmtjwMK6EWgpwaMt-0)
 
-1. Install dependencies
+## 🚀 Tecnologias
 
-   ```bash
-   npm install
-   ```
+- **Expo Router** → Navegação com rotas baseadas em arquivos, facilitando a organização e a escalabilidade do app.
+- **TanStack Query** → Controle eficiente de estados assíncronos, cache e revalidação de dados com uma experiência fluida para o usuário.
+- **Supabase** → Backend completo com banco de dados PostgreSQL, autenticação, e storage para imagens.
+- **Arquitetura para Frontend** → Estrutura modular inspirada em boas práticas como Separation of Concerns, Domain-Driven Design e SOLID facilitando testes, manutenção e reuso de código.
+- **Expo EAS (CI/CD)** → Pipeline automatizado de build e deploy para Android e iOS usando o Expo Application Services.
+- **Expo Updates (Over-the-Air)** → Atualizações rápidas e sem necessidade de aprovação nas lojas, entregues direto para os usuários.
+- **Publicação nas Lojas** → Processo completo de geração de builds, configuração e envio para Google Play e Apple Store.
+- **React Native Testing Library** → Testes de unidade e integração garantindo qualidade e comportamento esperado dos componentes e lógica de negócio.
+- **Testes E2E** → Automação de testes ponta a ponta, simulando interações reais de usuários no app.
 
-2. Start the app
+## 📁 Estrutura do Projeto
 
-   ```bash
-   npx expo start
-   ```
+O projeto segue uma arquitetura limpa e modular, dividida em camadas:
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+app/                    # Camada de navegação (Expo Router)
+src/
+  ├── domain/          # Camada de domínio (entidades, repositórios, casos de uso)
+  ├── infra/           # Camada de infraestrutura (implementações, adapters)
+  └── ui/              # Camada de apresentação (componentes, containers, theme)
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Para mais detalhes sobre a arquitetura, consulte os arquivos `AGENTS.md` em cada pasta.
 
-## Learn more
+## 🏃 Como Executar
 
-To learn more about developing your project with Expo, look at the following resources:
+1. **Instalar dependências**
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+   ```bash
+   yarn install
+   ```
 
-## Join the community
+2. **Configurar variáveis de ambiente**
 
-Join our community of developers creating universal apps.
+   Crie um arquivo `.env` na raiz do projeto com suas credenciais do Supabase.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+3. **Iniciar o app**
+
+   ```bash
+   yarn start
+   ```
+
+   Ou para plataformas específicas:
+
+   ```bash
+   yarn android
+   yarn ios
+   ```
+
+## 🧪 Testes
+
+```bash
+# Testes de unidade e integração
+yarn test
+
+# Testes E2E
+yarn test:e2e
+```
+
+## 📦 Build e Deploy
+
+```bash
+# Build de desenvolvimento
+eas build --profile development
+
+# Build de produção
+eas build --profile production
+
+# Publicar atualização OTA
+eas update
+```
+
+## 📚 Documentação para Agentes de IA
+
+Este projeto contém arquivos `AGENTS.md` estrategicamente posicionados para ajudar agentes de IA a entenderem a arquitetura, padrões e convenções do código:
+
+- `/app/AGENTS.md` - Navegação e estrutura de rotas
+- `/src/AGENTS.md` - Arquitetura geral do projeto
+- `/src/domain/AGENTS.md` - Camada de domínio e regras de negócio
+- `/src/infra/AGENTS.md` - Infraestrutura e implementações
+- `/src/ui/AGENTS.md` - Componentes e padrões de UI
+
+## 📄 Licença
+
+Este projeto é um exemplo educacional.
