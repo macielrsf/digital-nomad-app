@@ -7,7 +7,7 @@ describe('<Button />', () => {
     const onPressFn = jest.fn();
     renderComponent(<Button title='button title' onPress={onPressFn} />);
 
-    fireEvent.press(screen.getByText('button title'));
+    fireEvent.press(screen.getByTestId('button'));
 
     expect(onPressFn).toHaveBeenCalled();
   });
@@ -15,10 +15,10 @@ describe('<Button />', () => {
   it('should NOT call the onPress function when it is disabled', () => {
     const onPressFn = jest.fn();
     renderComponent(
-      <Button title='button title' onPress={onPressFn} disabled={true} />,
+      <Button title='button title' onPress={onPressFn} disabled={true} />
     );
 
-    fireEvent.press(screen.getByText('button title'));
+    fireEvent.press(screen.getByTestId('button'));
 
     expect(onPressFn).not.toHaveBeenCalled();
   });

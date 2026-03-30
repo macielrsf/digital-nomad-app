@@ -33,6 +33,7 @@ export function Button({
   const buttonProps = buttonColors[variant];
   return (
     <TouchableOpacityBox
+      testID='button'
       {...toProps}
       onPress={onPress}
       backgroundColor={buttonProps.backgroundColor}
