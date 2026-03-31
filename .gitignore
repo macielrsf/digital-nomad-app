@@ -44,3 +44,5 @@ app-example
 
 # local environment variables
 .env
+
+coverage/

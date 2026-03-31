@@ -11,7 +11,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "format:staged": "prettier --write --list-different",
-    "test": "jest"
+    "test": "jest --watchAll --verbose",
+    "test:coverage": "jest --verbose --coverage"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",
