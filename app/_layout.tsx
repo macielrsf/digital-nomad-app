@@ -10,7 +10,6 @@ import { AppStack } from '@/src/ui/navigation/AppStack';
 import theme from '@/src/ui/theme/theme';
 import { ThemeProvider } from '@shopify/restyle';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 
@@ -53,20 +52,7 @@ export default function RootLayout() {
         <FeedbackProvider value={ToastFeedback}>
           <RepositoryProvider value={InMemoryRepositories}>
             <ThemeProvider theme={theme}>
-              <Stack
-                screenOptions={{
-                  contentStyle: { backgroundColor: theme.colors.background },
-                  headerShown: false,
-                  fullScreenGestureEnabled: true,
-                }}
-              >
-                <Stack.Screen
-                  name='(protected)'
-                  options={{ headerShown: false }}
-                />
-                <Stack.Screen name='+not-found' />
-                <Stack.Screen name='sign-in' />
-              </Stack>
+              <AppStack />
               <StatusBar style='light' />
               <Toast />
             </ThemeProvider>
