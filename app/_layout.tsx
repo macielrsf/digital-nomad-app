@@ -6,6 +6,7 @@ import { InMemoryRepositories } from '@/src/infra/repositories/adapters/inMemory
 import { RepositoryProvider } from '@/src/infra/repositories/RepositoryProvider';
 import { AsyncStorage } from '@/src/infra/storage/adapters/AsyncStorage';
 import { StorageProvider } from '@/src/infra/storage/StorageContext';
+import { AppStack } from '@/src/ui/navigation/AppStack';
 import theme from '@/src/ui/theme/theme';
 import { ThemeProvider } from '@shopify/restyle';
 import { useFonts } from 'expo-font';

@@ -15,6 +15,7 @@ type TextInputProps = RNTextInputProps & {
 export function TextInput({
   label,
   errorMessage,
+  testID,
   ...textInputProps
 }: TextInputProps) {
   const { colors, textVariants } = useAppTheme();
@@ -31,8 +32,13 @@ export function TextInput({
       <Text mb='s4' variant='title14'>
         {label}
       </Text>
-      <Box {...textInputBoxStyle} borderColor={borderColor}>
+      <Box
+        testID={`${testID}-container`}
+        {...textInputBoxStyle}
+        borderColor={borderColor}
+      >
         <RNTextInput
+          testID={testID}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           placeholderTextColor={colors.gray2}
