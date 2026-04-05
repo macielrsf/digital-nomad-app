@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "sh",
+      "args": [
+        "-c",
+        "set -a && . /Users/maciel/coffstack/digital-nomad-app/.env && set +a && npx -y @modelcontextprotocol/server-github"
+      ]
+    }
+  }
+}
