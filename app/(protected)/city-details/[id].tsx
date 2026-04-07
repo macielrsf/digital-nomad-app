@@ -39,6 +39,7 @@ export default function CityDetailsScreen() {
         contentContainerStyle={{ paddingBottom: 32 }}
         header={<CityDetailsHeader city={city} />}
       >
+        <CityDetailsHeader city={city} />
         <CityDetailsInfo
           name={city.name}
           country={city.country}
