@@ -27,6 +27,7 @@ export function SearchInput({
       }}
     >
       <TextInput
+        testID='search-input'
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}

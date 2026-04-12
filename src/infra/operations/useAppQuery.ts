@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 type UseFetchDataReturn<DataT> = {
   data?: DataT;
   isLoading: boolean;
-  error: unknown;
+  error: Error | null;
 };
 
 export function useAppQuery<DataT>(
@@ -12,7 +12,7 @@ export function useAppQuery<DataT>(
 ): UseFetchDataReturn<DataT> {
   const [data, setData] = useState<DataT>();
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<unknown>(null);
+  const [error, setError] = useState<Error | null>(null);
 
   async function _fetchData() {
     try {
@@ -22,7 +22,7 @@ export function useAppQuery<DataT>(
 
       setData(_data);
     } catch (error) {
-      setError(error);
+      setError(error instanceof Error ? error : new Error(String(error)));
     } finally {
       setIsLoading(false);
     }
