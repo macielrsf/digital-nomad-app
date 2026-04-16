@@ -13,6 +13,7 @@ import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import 'react-native-reanimated';
+import { SupabaseRepositories } from '@/src/infra/repositories/adapters/supabase';
 
 const queryClient = new QueryClient();
 
@@ -54,7 +55,7 @@ export default function RootLayout() {
       <StorageProvider storage={AsyncStorage}>
         <AuthProvider>
           <FeedbackProvider value={ToastFeedback}>
-            <RepositoryProvider value={InMemoryRepositories}>
+            <RepositoryProvider value={SupabaseRepositories}>
               <ThemeProvider theme={theme}>
                 <AppStack />
                 <StatusBar style='light' />
