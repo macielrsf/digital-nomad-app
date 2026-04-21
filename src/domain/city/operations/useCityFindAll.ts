@@ -1,19 +1,12 @@
-import { useQuery } from '@tanstack/react-query';
-
+import { useAppQuery } from '@/src/infra/operations/useAppQuery';
 import { useRepository } from '@/src/infra/repositories/RepositoryProvider';
 import { CityFindAllFilters } from '../ICityRepo';
 
 export function useCityFindAll(filters: CityFindAllFilters) {
   const { city } = useRepository();
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['cities', filters],
-    queryFn: () => city.findAll(filters),
+  return useAppQuery({
+    queryKey: ['city', filters.name, filters.categoryId],
+    fetchData: () => city.findAll(filters),
   });
-
-  return {
-    data,
-    isLoading,
-    error,
-  };
 }
