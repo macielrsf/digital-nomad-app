@@ -9,9 +9,11 @@ export class SupabaseAuthRepo implements IAuthRepo {
       email,
       password,
     });
+
     if (error) {
       throw new Error('user not found');
     }
+
     return supabaseAdapter.toAuthUser(data.user);
   };
   signUp = async (params: AuthSignUpParams): Promise<void> => {
@@ -20,6 +22,7 @@ export class SupabaseAuthRepo implements IAuthRepo {
       password: params.password,
       options: { data: { fullname: params.fullname } },
     });
+
     if (error) {
       throw new Error('erro on register user');
     }
@@ -29,9 +32,20 @@ export class SupabaseAuthRepo implements IAuthRepo {
   signOut = async (): Promise<void> => {
     await supabase.auth.signOut();
   };
+
   sendResetPasswordEmail = async (email: string): Promise<void> => {
     await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${process.env.EXPO_PUBLIC_WEB_URL}/reset-password`,
     });
+  };
+
+  getUser = async (): Promise<AuthUser> => {
+    const { data, error } = await supabase.auth.getUser();
+
+    if (error) {
+      throw new Error('error get User');
+    }
+
+    return supabaseAdapter.toAuthUser(data.user);
   };
 }

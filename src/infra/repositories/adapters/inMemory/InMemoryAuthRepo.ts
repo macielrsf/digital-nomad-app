@@ -26,10 +26,16 @@ export class InMemoryAuthRepo implements IAuthRepo {
     authUsers.push({
       id: String(authUsers.length + 1),
       email: params.email,
+      fullname: params.fullname,
+      createdAt: new Date().toISOString(),
     });
   }
 
   async sendResetPasswordEmail(email: string): Promise<void> {
     console.log('the reset password has been sent:', email);
+  }
+
+  async getUser(): Promise<AuthUser> {
+    return authUsers[0];
   }
 }
