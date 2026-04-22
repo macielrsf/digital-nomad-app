@@ -24,9 +24,8 @@ export function useAuthSignIn() {
     onError: error => {
       feedbackService.send({
         type: 'error',
-        message: `sign in failed: ${
-          error instanceof Error ? error.message : String(error)
-        }`,
+        message: 'error ao fazer login',
+        description: error instanceof Error ? error.message : String(error),
       });
     },
   });

@@ -12,7 +12,7 @@ export const IconButton = ({ iconName, onPress }: IconButtonProps) => {
   const { boxShadows } = useAppTheme();
 
   return (
-    <Pressable testID={iconName} onPress={onPress}>
+    <Pressable onPress={onPress}>
       <Box {...boxStyle} style={{ boxShadow: boxShadows.primary }}>
         <Icon name={iconName} color='pureWhite' />
       </Box>

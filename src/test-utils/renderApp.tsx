@@ -10,6 +10,7 @@ import { renderRouter } from 'expo-router/testing-library';
 import { AppStack } from '../ui/navigation/AppStack';
 
 import { ThemeProvider } from '@shopify/restyle';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthContext, AuthProvider } from '../domain/auth/AuthContext';
 import { AuthUser } from '../domain/auth/AuthUser';
 import { Repositories } from '../domain/Repositories';
@@ -24,6 +25,7 @@ import theme from '../ui/theme/theme';
 
 import clonedeep from 'lodash.clonedeep';
 import merge from 'lodash.merge';
+import { queryClientOptions } from './queryClientOptions';
 
 type DeepPartial<T> = {
   [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
@@ -59,24 +61,28 @@ export function renderApp(options?: {
     options?.repositories ?? {}
   );
 
+  const client = new QueryClient(queryClientOptions);
+
   const FinalAuthProvider = options?.isAuthenticated
     ? MockedAuthProvider
     : AuthProvider;
 
   function Wrapper({ children }: React.PropsWithChildren) {
     return (
-      <StorageProvider storage={inMemoryStorage}>
-        <FinalAuthProvider>
-          <FeedbackProvider value={ToastFeedback}>
-            <RepositoryProvider value={finalRepository}>
-              <ThemeProvider theme={theme}>
-                {children}
-                <Toast />
-              </ThemeProvider>
-            </RepositoryProvider>
-          </FeedbackProvider>
-        </FinalAuthProvider>
-      </StorageProvider>
+      <QueryClientProvider client={client}>
+        <StorageProvider storage={inMemoryStorage}>
+          <FinalAuthProvider>
+            <FeedbackProvider value={ToastFeedback}>
+              <RepositoryProvider value={finalRepository}>
+                <ThemeProvider theme={theme}>
+                  {children}
+                  <Toast />
+                </ThemeProvider>
+              </RepositoryProvider>
+            </FeedbackProvider>
+          </FinalAuthProvider>
+        </StorageProvider>
+      </QueryClientProvider>
     );
   }
 
