@@ -1,8 +1,23 @@
 import { useAuth } from '@/src/domain/auth/AuthContext';
+import { useAuthGetUser } from '@/src/domain/auth/operations/useAuthGetUser';
 import { Redirect, Stack } from 'expo-router';
+import { useEffect } from 'react';
 
 export default function ProtectedLayout() {
-  const { isReady, authUser } = useAuth();
+  const { isReady, authUser, removeAuthUser } = useAuth();
+  const {
+    data: supabaseUser,
+    error,
+    isLoading,
+  } = useAuthGetUser({
+    enabled: isReady && !!authUser,
+  });
+
+  useEffect(() => {
+    if (error && authUser) {
+      removeAuthUser();
+    }
+  }, [authUser, error, removeAuthUser]);
 
   if (!isReady) {
     return null;
@@ -10,6 +25,10 @@ export default function ProtectedLayout() {
 
   if (!authUser) {
     return <Redirect href='/sign-in' />;
+  }
+
+  if (isLoading || !supabaseUser) {
+    return null;
   }
 
   return (
