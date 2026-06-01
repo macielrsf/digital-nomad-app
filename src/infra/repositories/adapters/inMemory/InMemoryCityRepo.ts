@@ -1,5 +1,10 @@
 import { City, CityPreview } from '@/src/domain/city/City';
-import { CityFindAllFilters, ICityRepo } from '@/src/domain/city/ICityRepo';
+import {
+  CityFindAllFilters,
+  CityToggleFavoriteParams,
+  ICityRepo,
+  CitiesGroupedByCategory,
+} from '@/src/domain/city/ICityRepo';
 import { cities } from '@/src/infra/repositories/adapters/inMemory/data/cities';
 
 export class InMemoryCityRepo implements ICityRepo {
@@ -33,5 +38,21 @@ export class InMemoryCityRepo implements ICityRepo {
       });
     }
     return cityPreviewList;
+  }
+
+  async findGroupedByCategory(): Promise<CitiesGroupedByCategory[]> {
+    return cities.map(city => ({
+      category: city.categories[0],
+      cities: [city],
+    }));
+  }
+  async toggleFavorite(params: CityToggleFavoriteParams): Promise<void> {
+    const city = cities.find(city => city.id === params.cityId);
+    if (city) {
+      city.isFavorite = params.isFavorite;
+    }
+  }
+  async findAllFavorites(): Promise<CityPreview[]> {
+    return cities.filter(city => city.isFavorite);
   }
 }

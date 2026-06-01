@@ -1,3 +1,4 @@
+import { Category } from '../category/Category';
 import { City, CityPreview } from './City';
 
 export type CityFindAllFilters = {
@@ -8,6 +9,11 @@ export type CityFindAllFilters = {
 export type CityToggleFavoriteParams = {
   cityId: string;
   isFavorite: boolean;
+};
+
+export type CitiesGroupedByCategory = {
+  category: Category;
+  cities: CityPreview[];
 };
 
 export interface ICityRepo {

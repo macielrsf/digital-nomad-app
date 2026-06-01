@@ -43,7 +43,7 @@ async function findAll(filters: CityFilters): Promise<CityPreview[]> {
       throw new Error('data is not available');
     }
 
-    return data?.map(supabaseAdapter.toCityPreview);
+    return data?.map(row => supabaseAdapter.toCityPreview(row));
   } catch (error) {
     throw error;
   }
@@ -70,7 +70,7 @@ async function getRelatedCities(cityId: string): Promise<CityPreview[]> {
     .eq('source_city_id', cityId)
     .throwOnError();
 
-  return data.map(supabaseAdapter.toCityPreview);
+  return data.map(row => supabaseAdapter.toCityPreview(row));
 }
 
 async function toggleFavorite(params: CityToggleFavoriteParams): Promise<void> {
@@ -90,7 +90,19 @@ async function toggleFavorite(params: CityToggleFavoriteParams): Promise<void> {
 }
 
 async function findAllFavorites(): Promise<CityPreview[]> {
-  const user = await supabaseHelpers.getUserFromSession();
+  console.log('findAllFavorites called');
+
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) {
+    console.log('favorite cities user error', userError);
+    throw new Error('invalid user');
+  }
+
+  console.log('fetching favorite cities for user', user.id);
 
   const { data } = await supabase
     .from('favorite_cities')
@@ -108,7 +120,17 @@ async function findAllFavorites(): Promise<CityPreview[]> {
     .eq('user_id', user.id)
     .throwOnError();
 
-  return data.map(item => supabaseAdapter.toCityPreview(item.cities));
+  console.log('favorite cities raw data', data);
+
+  return (data ?? []).flatMap(item => {
+    const city = Array.isArray(item.cities) ? item.cities[0] : item.cities;
+
+    if (!city) {
+      return [];
+    }
+
+    return [supabaseAdapter.toCityPreview(city, true)];
+  });
 }
 
 export const SupabaseCityRepo: ICityRepo = {
