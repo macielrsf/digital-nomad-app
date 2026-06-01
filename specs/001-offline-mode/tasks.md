@@ -332,7 +332,7 @@
 - **Foundational (Phase 2)**: Depends on Setup completion - BLOCKS all user stories
 - **User Story 1 (Phase 3)**: Depends on Foundational (Phase 2) - MVP priority
 - **User Story 2 (Phase 4)**: Depends on Foundational (Phase 2) - Can start in parallel with US1 if staffed, but US1 is MVP
-- **User Story 3 (Phase 5)**: Depends on Foundational (Phase 2) - Can start in parallel with US1/US2 if staffed
+- **User Story 3 (Phase 5)**: Depends on Foundational (Phase 2) - Can start in with US1/US2 if staffed
 - **User Story 4 (Phase 6)**: Depends on US1 completion (needs OfflineCity entity) - Can start in parallel with US2/US3
 - **Polish (Phase 7)**: Depends on all desired user stories being complete
 
