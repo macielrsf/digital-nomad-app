@@ -9,7 +9,10 @@ import { IconButton } from '../components/IconButton';
 import { BadgeHeight } from '../components/Badge';
 import { router } from 'expo-router';
 
-type CityDetailsHeaderProps = Pick<City, 'id' | 'coverImage' | 'categories'>;
+type CityDetailsHeaderProps = Pick<
+  City,
+  'id' | 'coverImage' | 'categories' | 'isFavorite'
+>;
 
 export function CityDetailsHeader({ city }: { city: CityDetailsHeaderProps }) {
   const insets = useSafeAreaInsets();
@@ -32,7 +35,11 @@ export function CityDetailsHeader({ city }: { city: CityDetailsHeaderProps }) {
           style={{ paddingTop: insets.top }}
         >
           <IconButton iconName='Chevron-left' onPress={router.back} />
-          <Icon name='Favorite-outline' size={30} color='pureWhite' />
+          <Icon
+            name={city.isFavorite ? 'Favorite-fill' : 'Favorite-outline'}
+            size={30}
+            color={city.isFavorite ? 'primary' : 'pureWhite'}
+          />
         </Box>
       </ImageBackground>
       <ScrollView

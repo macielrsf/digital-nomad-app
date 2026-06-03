@@ -13,9 +13,16 @@ export type CityFilters = {
   categoryId?: string | null;
 };
 
+const CITY_PREVIEW_FIELD = '*,favorite_cities!left(user_id)';
+
 async function findAll(filters: CityFilters): Promise<CityPreview[]> {
   try {
-    let query = supabase.from('cities_with_full_info').select('*');
+    const user = await supabaseHelpers.getUserFromSession();
+
+    let query = supabase
+      .from('cities_with_full_info')
+      .select(CITY_PREVIEW_FIELD)
+      .eq('favorite_cities.user_id', user.id);
 
     if (filters.name) {
       query = query.ilike('name', `%${filters.name}%`);
@@ -50,10 +57,13 @@ async function findAll(filters: CityFilters): Promise<CityPreview[]> {
 }
 
 async function findById(id: string): Promise<City> {
+  const user = await supabaseHelpers.getUserFromSession();
+
   const { data, error } = await supabase
     .from('cities_with_full_info')
-    .select('*')
+    .select('*,favorite_cities!left(user_id)')
     .eq('id', id)
+    .eq('favorite_cities.user_id', user.id)
     .single();
 
   if (error) {
@@ -64,10 +74,13 @@ async function findById(id: string): Promise<City> {
 }
 
 async function getRelatedCities(cityId: string): Promise<CityPreview[]> {
+  const user = await supabaseHelpers.getUserFromSession();
+
   const { data } = await supabase
     .from('related_cities')
-    .select('*')
+    .select(CITY_PREVIEW_FIELD)
     .eq('source_city_id', cityId)
+    .eq('favorite_cities.user_id', user.id)
     .throwOnError();
 
   return data.map(row => supabaseAdapter.toCityPreview(row));
@@ -90,19 +103,15 @@ async function toggleFavorite(params: CityToggleFavoriteParams): Promise<void> {
 }
 
 async function findAllFavorites(): Promise<CityPreview[]> {
-  console.log('findAllFavorites called');
-
   const {
     data: { user },
     error: userError,
   } = await supabase.auth.getUser();
 
   if (userError || !user) {
-    console.log('favorite cities user error', userError);
+    console.error('favorite cities user error', userError);
     throw new Error('invalid user');
   }
-
-  console.log('fetching favorite cities for user', user.id);
 
   const { data } = await supabase
     .from('favorite_cities')
@@ -119,8 +128,6 @@ async function findAllFavorites(): Promise<CityPreview[]> {
     )
     .eq('user_id', user.id)
     .throwOnError();
-
-  console.log('favorite cities raw data', data);
 
   return (data ?? []).flatMap(item => {
     const city = Array.isArray(item.cities) ? item.cities[0] : item.cities;

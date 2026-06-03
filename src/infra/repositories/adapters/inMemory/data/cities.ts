@@ -6,6 +6,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
     id: 'rio-de-janeiro',
     name: 'Rio de Janeiro',
     country: 'Brasil',
+    isFavorite: false,
     coverImage: require('./images/rio-de-janeiro.jpg'),
     description:
       'Rio de Janeiro, a Cidade Maravilhosa, é mundialmente famosa por suas praias icônicas, montanhas exuberantes e o Carnaval. A cidade oferece uma combinação única de cultura vibrante, belezas naturais e um estilo de vida animado.',
@@ -50,6 +51,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
     id: 'tokyo',
     name: 'Tóquio',
     country: 'Japão',
+    isFavorite: false,
     coverImage: require('./images/tokyo.jpg'),
     description:
       'Tóquio, capital do Japão, combina tradição e modernidade, com templos antigos e arquitetura futurista. É um centro global de cultura, tecnologia e economia, além de ser famosa por sua gastronomia. A cidade também possui uma das redes de transporte mais eficientes do mundo.',
@@ -94,6 +96,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
     id: 'bangkok',
     name: 'Bangkok',
     country: 'Tailândia',
+    isFavorite: false,
     coverImage: require('./images/bangkok.jpg'),
     description:
       'Bangkok, a capital vibrante da Tailândia, é uma cidade que mistura tradição e modernidade. Famosa por seus templos históricos, mercados de rua movimentados e arranha-céus imponentes, a cidade é um dos destinos turísticos mais dinâmicos do Sudeste Asiático.',
@@ -144,6 +147,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
     id: 'barcelona',
     name: 'Barcelona',
     country: 'Espanha',
+    isFavorite: false,
     coverImage: require('./images/barcelona.jpg'),
     description:
       'Barcelona, a vibrante capital da Catalunha, é conhecida por sua arquitetura modernista, belas praias e uma cultura rica. A cidade é famosa pela obra-prima de Gaudí, a Sagrada Família, e pelo movimentado boulevard Las Ramblas.',
@@ -188,6 +192,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
     id: 'new-york',
     name: 'Nova York',
     country: 'Estados Unidos',
+    isFavorite: false,
     coverImage: require('./images/new-york.jpg'),
     description:
       'Nova York, a cidade que nunca dorme, é um centro global de cultura, negócios e entretenimento. Famosa por seus arranha-céus, museus icônicos e um estilo de vida acelerado, a cidade oferece uma experiência única para visitantes de todo o mundo.',
@@ -232,6 +237,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
     id: 'krabi',
     name: 'Krabi',
     country: 'Tailândia',
+    isFavorite: false,
     coverImage: require('./images/krabi.jpg'),
     description:
       'Krabi, localizada na costa oeste da Tailândia, é famosa por suas paisagens deslumbrantes, praias de areia branca e águas cristalinas. Com falésias calcárias, ilhas paradisíacas e aventuras ao ar livre, é um dos destinos mais procurados por turistas em busca de natureza e tranquilidade.',
@@ -277,6 +283,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
     id: 'bali',
     name: 'Bali',
     country: 'Indonésia',
+    isFavorite: false,
     coverImage: require('./images/bali.jpg'),
     description:
       'Bali, também conhecida como a Ilha dos Deuses, é um dos destinos turísticos mais procurados do mundo. Famosa por suas praias exóticas, templos antigos, cultura rica e vulcões ativos, Bali oferece um equilíbrio perfeito entre relaxamento e aventura.',
@@ -321,6 +328,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
     id: 'amsterdam',
     name: 'Amsterdã',
     country: 'Países Baixos',
+    isFavorite: false,
     coverImage: require('./images/amsterdam.jpg'),
     description:
       'Amsterdã, a capital vibrante dos Países Baixos, é conhecida por seus canais pitorescos, museus renomados e uma rica história cultural. A cidade é famosa por suas bicicletas, arquitetura única e uma atmosfera acolhedora.',
@@ -366,6 +374,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
     id: 'cancun',
     name: 'Cancún',
     country: 'México',
+    isFavorite: false,
     coverImage: require('./images/cancun.jpg'),
     description:
       'Cancún, localizada na costa caribenha do México, é famosa por suas praias de areia branca, águas cristalinas e vida noturna vibrante. Este paraíso tropical é um dos destinos turísticos mais populares do mundo, oferecendo uma mistura de relaxamento, aventura e história antiga.',
@@ -411,6 +420,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
     id: 'dubai',
     name: 'Dubai',
     country: 'Emirados Árabes Unidos',
+    isFavorite: false,
     coverImage: require('./images/dubai.jpg'),
     description:
       'Dubai, uma cidade global conhecida por seu luxo, inovação e arquitetura impressionante, é um dos destinos turísticos mais icônicos do mundo. A cidade combina cultura árabe tradicional com modernidade, oferecendo experiências de compras, aventura no deserto e arranha-céus futuristas.',
@@ -456,6 +466,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
     id: 'ciudad-de-mexico',
     name: 'Cidade do México',
     country: 'México',
+    isFavorite: false,
     coverImage: require('./images/ciudad-de-mexico.jpg'),
     description:
       'A Cidade do México, uma das maiores e mais antigas cidades das Américas, é uma metrópole vibrante que combina história, cultura e modernidade. Famosa por suas praças históricas, museus e rica gastronomia, a cidade oferece uma experiência inesquecível aos visitantes.',
@@ -500,6 +511,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
     id: 'hong-kong',
     name: 'Hong Kong',
     country: 'China',
+    isFavorite: false,
     coverImage: require('./images/hong-kong.jpg'),
     description:
       'Hong Kong, uma das cidades mais vibrantes e densamente povoadas do mundo, é conhecida por seu horizonte icônico, portos movimentados e uma mistura única de cultura oriental e ocidental. A cidade oferece uma rica história, cultura diversificada e experiências gastronômicas incomparáveis.',
@@ -544,6 +556,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
     id: 'kosice',
     name: 'Košice',
     country: 'Eslováquia',
+    isFavorite: false,
     coverImage: require('./images/kosice.jpg'),
     description:
       'Košice, a segunda maior cidade da Eslováquia, é um centro histórico e cultural com uma rica arquitetura gótica e uma atmosfera vibrante. Conhecida por sua bela catedral, praças animadas e festivais culturais, Košice oferece uma combinação perfeita de tradição e modernidade.',
@@ -588,6 +601,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
     id: 'melbourne',
     name: 'Melbourne',
     country: 'Austrália',
+    isFavorite: false,
     coverImage: require('./images/melbourne.jpg'),
     description:
       'Melbourne, a capital cultural da Austrália, é conhecida por sua vibrante cena artística, vida noturna, cafés e eventos esportivos de classe mundial. Com uma mistura única de arquitetura vitoriana e moderna, a cidade oferece uma atmosfera cosmopolita e criativa.',
@@ -633,6 +647,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
     id: 'singapore',
     name: 'Singapura',
     country: 'Singapura',
+    isFavorite: false,
     coverImage: require('./images/singapore.jpg'),
     description:
       'Singapura, uma cidade-estado moderna e cosmopolita, é conhecida por seu impressionante horizonte urbano, jardins futuristas e uma mistura fascinante de culturas asiáticas. Famosa por sua limpeza, inovação e eficiência, Singapura oferece uma experiência única de modernidade e tradição.',
@@ -680,4 +695,5 @@ export const cityPreviewList: CityPreview[] = cities.map(city => ({
   name: city.name,
   country: city.country,
   coverImage: city.coverImage,
+  isFavorite: city.isFavorite,
 }));

@@ -41,10 +41,16 @@ export const CityCard = ({ city, style }: CityCardProps) => {
             <TouchableOpacityBox
               alignSelf='flex-end'
               onPress={() => {
-                toggleFavorite({ cityId: city.id, isFavorite: false });
+                toggleFavorite({
+                  cityId: city.id,
+                  isFavorite: city.isFavorite,
+                });
               }}
             >
-              <Icon name='Favorite-outline' color='text' />
+              <Icon
+                name={city.isFavorite ? 'Favorite-fill' : 'Favorite-outline'}
+                color={city.isFavorite ? 'primary' : 'text'}
+              />
             </TouchableOpacityBox>
 
             <Box>
