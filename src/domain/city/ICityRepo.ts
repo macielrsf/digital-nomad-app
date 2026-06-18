@@ -19,6 +19,7 @@ export type CitiesGroupedByCategory = {
 export interface ICityRepo {
   findAll(filters: CityFindAllFilters): Promise<CityPreview[]>;
   findById(id: string): Promise<City>;
+  findGroupedByCategory(): Promise<CitiesGroupedByCategory[]>;
   getRelatedCities(cityId: string): Promise<CityPreview[]>;
   toggleFavorite(params: CityToggleFavoriteParams): Promise<void>;
   findAllFavorites(): Promise<CityPreview[]>;

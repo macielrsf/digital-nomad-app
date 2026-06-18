@@ -16,7 +16,7 @@ export function CategoryBadge({ category, ...badgeProps }: CategoryBadgeProps) {
   );
 }
 
-const categoryIconMap: Record<CategoryCode, IconName> = {
+export const categoryIconMap: Record<CategoryCode, IconName> = {
   ADVENTURE: 'Adventure',
   BEACH: 'Beach',
   CULTURE: 'Culture',
