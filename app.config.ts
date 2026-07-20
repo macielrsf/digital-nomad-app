@@ -22,6 +22,11 @@ module.exports = {
       },
       edgeToEdgeEnabled: true,
       package: 'com.coffstack.digitalnomadapp',
+      config: {
+        googleMaps: {
+          apiKey: process.env.GOOGLE_MAPS_API_KEY,
+        },
+      },
     },
     web: {
       output: 'static',
