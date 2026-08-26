@@ -12,6 +12,7 @@
     "format:check": "prettier --check .",
     "format:staged": "prettier --write --list-different",
     "test": "jest --watchAll --verbose",
+    "test:ci": "jest --verbose",
     "test:coverage": "jest --verbose --coverage"
   },
   "dependencies": {

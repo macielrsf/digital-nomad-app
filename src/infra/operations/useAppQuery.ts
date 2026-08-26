@@ -18,13 +18,13 @@ export function useAppQuery<DataT>({
   enabled,
   fetchData,
   queryKey,
-  retry = true,
+  retry,
 }: UseAppQueryParams<DataT>): UseFetchDataReturn<DataT> {
   const { data, isLoading, error, isPending } = useQuery({
     queryKey,
     queryFn: fetchData,
     enabled,
-    retry,
+    ...(retry !== undefined ? { retry } : {}),
   });
 
   return {

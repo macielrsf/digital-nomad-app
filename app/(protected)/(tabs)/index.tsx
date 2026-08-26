@@ -48,14 +48,14 @@ export default function HomeScreen() {
   function renderEmptyComponent() {
     let Content;
 
-    if (isLoading) {
-      Content = <Text>carregando cidades...</Text>;
-    } else if (error) {
+    if (error) {
       Content = (
         <Text>
           erro ao carregar cidades. {errorUtils.getErrorMessage(error)}
         </Text>
       );
+    } else if (isLoading) {
+      Content = <Text>carregando cidades...</Text>;
     } else {
       Content = <Text>não há cidades no momento</Text>;
     }
