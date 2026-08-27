@@ -1,5 +1,14 @@
 # Digital Nomad App
 
+## Idiomas / Languages
+
+- [Português (PT-BR)](#portugues-pt-br)
+- [English (EN)](#english-en)
+
+<a id="portugues-pt-br"></a>
+
+## Português (PT-BR)
+
 Aplicativo completo inspirado nos principais destinos de viagem escolhidos por nômades digitais. O usuário poderá explorar destinos ao redor do mundo, visualizar detalhes como pontos turísticos, descrição da cidade e mapa interativo. O app inclui funcionalidades como busca, favoritos, filtros e autenticação.
 
 [Veja o design completo no Figma.](https://www.figma.com/design/NM5CCCaGU5ovcJzFqPTlaM/Digital-Nomad--Expo-?node-id=0-1&p=f&t=UmtjwMK6EWgpwaMt-0)
@@ -91,3 +100,99 @@ Este projeto contém arquivos `AGENTS.md` estrategicamente posicionados para aju
 ## 📄 Licença
 
 Este projeto é um exemplo educacional.
+
+<a id="english-en"></a>
+
+## English (EN)
+
+A complete app inspired by the top travel destinations chosen by digital nomads. Users can explore destinations around the world, view details such as tourist attractions, city descriptions, and an interactive map. The app includes features such as search, favorites, filters, and authentication.
+
+[View the full design in Figma.](https://www.figma.com/design/NM5CCCaGU5ovcJzFqPTlaM/Digital-Nomad--Expo-?node-id=0-1&p=f&t=UmtjwMK6EWgpwaMt-0)
+
+## 🚀 Technologies
+
+- **Expo Router** -> File-based navigation that makes the app easier to organize and scale.
+- **TanStack Query** -> Efficient async state management, caching, and data revalidation for a smooth user experience.
+- **Supabase** -> Complete backend with PostgreSQL database, authentication, and image storage.
+- **Frontend Architecture** -> Modular structure inspired by best practices such as Separation of Concerns, Domain-Driven Design, and SOLID, making the code easier to test, maintain, and reuse.
+- **Expo EAS (CI/CD)** -> Automated build and deployment pipeline for Android and iOS using Expo Application Services.
+- **Expo Updates (Over-the-Air)** -> Fast updates delivered directly to users without requiring app store approval.
+- **Store Publishing** -> Complete process for generating builds, configuration, and submission to Google Play and the Apple Store.
+- **React Native Testing Library** -> Unit and integration tests that ensure quality and expected behavior for components and business logic.
+- **E2E Tests** -> End-to-end test automation that simulates real user interactions in the app.
+
+## 📁 Project Structure
+
+The project follows a clean and modular architecture split into layers:
+
+```text
+app/                    # Navigation layer (Expo Router)
+src/
+  ├── domain/          # Domain layer (entities, repositories, use cases)
+  ├── infra/           # Infrastructure layer (implementations, adapters)
+  └── ui/              # Presentation layer (components, containers, theme)
+```
+
+For more details about the architecture, check the `AGENTS.md` files in each folder.
+
+## 🏃 How to Run
+
+1. **Install dependencies**
+
+   ```bash
+   yarn install
+   ```
+
+2. **Configure environment variables**
+
+   Create a `.env` file in the project root with your Supabase credentials.
+
+3. **Start the app**
+
+   ```bash
+   yarn start
+   ```
+
+   Or for specific platforms:
+
+   ```bash
+   yarn android
+   yarn ios
+   ```
+
+## 🧪 Tests
+
+```bash
+# Unit and integration tests
+yarn test
+
+# E2E tests
+yarn test:e2e
+```
+
+## 📦 Build and Deploy
+
+```bash
+# Development build
+eas build --profile development
+
+# Production build
+eas build --profile production
+
+# Publish OTA update
+eas update
+```
+
+## 📚 Documentation for AI Agents
+
+This project contains strategically placed `AGENTS.md` files to help AI agents understand the architecture, patterns, and code conventions:
+
+- `/app/AGENTS.md` - Navigation and route structure
+- `/src/AGENTS.md` - General project architecture
+- `/src/domain/AGENTS.md` - Domain layer and business rules
+- `/src/infra/AGENTS.md` - Infrastructure and implementations
+- `/src/ui/AGENTS.md` - UI components and patterns
+
+## 📄 License
+
+This project is an educational example.
