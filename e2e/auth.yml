@@ -9,16 +9,14 @@ appId: com.coffstack.digitalnomadapp
 - tapOn:
     text: .*Perfil.*
 
-- repeat:
-    while:
-      notVisible: ".*Bem-vindo.*"
-    commands:
-      - scrollUntilVisible:
-          element:
-            id: "sign-out-button" # or any other selector
-          direction: DOWN # DOWN|UP|LEFT|RIGHT (optional, default: DOWN)
+# The sign-out button is the FlatList footer, below the favorite cities
+- scrollUntilVisible:
+    element:
+      id: 'sign-out-button'
+    direction: DOWN
+    visibilityPercentage: 50
 
-      - tapOn:
-          id: "sign-out-button"
+- tapOn:
+    id: 'sign-out-button'
 
-- assertVisible: ".*Bem-vindo.*"
+- assertVisible: '.*Bem-vindo.*'
